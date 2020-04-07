@@ -6,4 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class State extends Model
 {
-    protected $primaryKey = 'state_id';}
+    protected $fallible = 'state_name';
+    protected $primaryKey = 'state_id';
+
+    public function vacancies()
+    {
+        return $this->hasMany('App\Employer');
+    }
+
+}
+

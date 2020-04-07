@@ -2,68 +2,125 @@
 
 namespace App\Http\Controllers;
 
+use App\Applicant;
+use App\Category;
 use App\Employer;
+use App\Notifications\NewJobNotification;
 use App\State;
-use App\StateModel;
+use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use Notification;
+use Illuminate\Support\Facades\Auth;
 
 class EmployerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['index', 'show', 'allVacancies', 'searchForVacancy']);
     }
 
+    // Return some of the available vacancies by limiting the number per query to 4
+    public function index()
+    {
+        $vacancies = Employer::where('clossing_date', '>=', date('Y-m-d'))->inRandomOrder()->take(4)->get();
+        return view('welcome',compact('vacancies'));
+    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // Return every vacancy that is not yet expired
+    public function allVacancies()
+    {
+
+
+            $vacancies = Employer::where('clossing_date', '>=', date('Y-m-d'))->get();
+            return view('vacancies.all_vacancies',compact('vacancies'));
+        }
+
+        // Search for a particular vacancy
+        public function searchForVacancy(Request $request)
+    {
+        $request->validate([
+            'search_name' => ['required']
+        ]);
+        $search = $request->search_name;
+
+        $stateId = intval($request->state_id);
+
+        if($stateId != '')
+        {
+            $vacancies = Employer::where('role_title', 'LIKE', '%' .$search. '%')
+                ->where([
+                ['clossing_date', '>=', date('Y-m-d')],
+                ['state_id', '=', $stateId]
+            ])->get();
+            $stateName = State::where('state_id', $stateId)
+            ->pluck('state_name')
+            ->first();
+        }
+
+        else
+        {
+            $vacancies = Employer::where('role_title', 'LIKE', '%' .$search. '%')->orWhere('summary', 'LIKE', '%'.$search.'%')->where([
+                ['clossing_date', '>=', date('Y-m-d')]
+            ])->get();
+            $stateName = '';
+        }
+
+        if(count($vacancies) >  0){
+            return view('vacancies.searched_vacancies',compact('vacancies'));
+        }
+        return back()->with('info', 'No result matches your search for '. $search . ' in ' .$stateName);
+
+    }
+
     public function create()
     {
-        $states = State::all();
-        return view('employers.create_job', compact('states'));
+        $action = route('employer.store');
+        $user = Auth::user();
+        if($user->users_type == 'employer')
+        {
+
+            return view('employers.create_job', compact('action'));
+        }
+        else{
+            return back()->with('error', 'Access denied');
+        }
     }
-
-
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
 
 
     public function store(Request $request)
     {
-      $validator =  $request->validate([
+        $request->validate([
             'role_title' => ['required', 'string', 'max:225'],
             'salary' => [ 'nullable'],
-            'address' => ['required', 'string',  'max:225', 'min:15'],
+            'summary' => ['required', 'string',   'min:15'],
             'state_id' => ['required'],
+            'category_id' => ['required'],
             'email' => ['required', 'string', 'email'],
             'phone' => ['string', 'min:9', 'max:15', 'nullable'],
             'min_experience' => ['required'],
             'description' => ['required', 'min:20', 'string'],
             'requirements' => ['required', 'min:20', 'string'],
             'clossing_date' => ['required', 'date'],
+
         ]);
+        $users = User::where('users_type', '=', 'applicant')->get();
+        $title = $request->role_title;
         $employer = Employer::create($request->all());
         $employer->save();
+        $id = $employer->employer_id;
+        $category_id = $employer->category_id;
+        $details = [
+            'greeting' => 'Hi There',
+            'body' => 'New '.$title. ' Role For You ',
+            'thanks' => 'Thank you for using platform!',
+            'actionText' => 'View Details',
+            'actionURL' => url(route('vacancy.details',[$id, $category_id, $title])),
+        ];
 
-        return response()->json('Form is successfully validated and data has been saved');
+
+        Notification::send($users, new NewJobNotification($details));
+
+        return back()->with('success','Vacancy created successfully!');
 
     }
 
@@ -73,42 +130,86 @@ class EmployerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $id2, Request $request)
     {
-        //
+
+        $similarJobs = Employer::with('category')
+        ->where('category_id', $id2)
+        ->where('employer_id', '!=', $id)
+        ->where('clossing_date', '>=', date('Y-m-d'))
+        ->take(4)->inRandomOrder()->get();
+
+        // This is to check
+        if(Auth::check() == true){
+
+            $user = Auth::user()->id;
+            $applicantInfo = Applicant::where('user_id', $user)->first();
+            if($applicantInfo == null){
+                $applicantInfo = '';
+            }
+        }
+        else{
+            $applicantInfo = '';
+        }
+        // else{$applicantInfo = '';}
+
+       $vacancy = Employer::where('employer_id','=', $id)->where('clossing_date', '>=', date('Y-m-d'))->firstOrFail();
+       return view('vacancies.vacancy_details', compact('vacancy','similarJobs', 'applicantInfo'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+    /**This function will return all the vacancies by a particular employer which are still within the dead line  date */
+
+    public function EmployerJobsLIstings($id)
+    {
+        $vacancies = Employer::where('user_id','=', $id)->where('clossing_date', '>=', date('Y-m-d'))->get();
+        $user = User::find($id);
+        if($user->users_type == 'employer')
+        {
+
+            return view('employers.all_vacancies', compact('vacancies'));
+        }
+        else{
+            return back()->with('error', 'Access denied');
+        }
+    }
+
+
+
     public function edit($id)
     {
-        //
+
+        $action = route('employer.update', ['id' => $id]);
+        $vacancy = Employer::find($id);
+        return view('employers.create_job', compact('vacancy','action'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'role_title' => ['required', 'string', 'max:225'],
+            'salary' => [ 'nullable'],
+            'summary' => ['required', 'string',   'min:15'],
+            'state_id' => ['required'],
+            'email' => ['required', 'string', 'email'],
+            'phone' => ['string', 'min:9', 'max:15', 'nullable'],
+            'min_experience' => ['required'],
+            'description' => ['required', 'min:20', 'string'],
+            'requirements' => ['required', 'min:20', 'string'],
+            'clossing_date' => ['required', 'date'],
+
+        ]);
+            Employer::whereEmployer_id($id)->update($request->except(['_token', '_method']));
+
+        return back()->with('success','Vacancy Updated successfully!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        Employer::find($id)->delete();
+        return back()->with('success','Vacancy Deleted successfully!');
     }
+
+
 }

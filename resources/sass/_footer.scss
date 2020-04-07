@@ -1,0 +1,16 @@
+footer{
+
+    background: $primary-color;
+    padding: 10px 0;
+    ul{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        align-items: center;
+        li{
+           color: #fff;
+           line-height: 76px;
+        }
+
+    }
+}

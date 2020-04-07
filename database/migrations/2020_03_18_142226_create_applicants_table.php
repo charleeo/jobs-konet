@@ -15,14 +15,14 @@ class CreateApplicantsTable extends Migration
     {
         Schema::create('applicants', function (Blueprint $table) {
             $table->bigIncrements('applicant_id');
-            $table->bigInteger('user_id')->unsigned();
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('resume');
+            $table->string('resume')->nullable();
             $table->string('first_name');
             $table->string('other_names');
             $table->string('phone');
             $table->string('applicant_email');
-            $table->text('cover_letter');
+            $table->text('cover_letter')->nullable();
             $table->boolean('applied_status')->default(false);
             $table->timestamps();
         });

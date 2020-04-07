@@ -1,0 +1,35 @@
+
+a:hover{
+    text-decoration: none;
+}
+.deccided-height{
+    height: 260px;
+}
+.fa-plus{
+    cursor: pointer;
+}
+.letter_input{
+    display: none;
+    border: 2px solid #646464;
+}
+.active{
+    background: #646464 !important
+}
+.fixed-top{
+
+    margin-bottom: 9rem !important;
+    /* width: 97.8%; */
+    z-index: 100;
+}
+.brand-icon{margin-top: 3rem;}
+@media(max-width:1200px)
+{
+        .deccided-height{
+            height: 290px;
+        }
+        h2,h1,h3, h4,h5,h6{
+            font-size: 1.2rem;
+            /* color: red; */
+        }
+
+}

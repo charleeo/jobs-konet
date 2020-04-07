@@ -28,7 +28,7 @@ body {
     margin-left: 0;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 968px) {
     #sidebar-wrapper {
       margin-left: 0;
     }
@@ -46,4 +46,16 @@ body {
 #side-bar-toggler{
     display: none;
 }
+}
+
+.my-sidebar-color{
+    background: #1d1818;
+    color:#ffff;
+    font-size: 1rem;
+    font-family: 'Times New Roman', Times, serif;
+    border-bottom: 3px solid #e8f1ec;
+}
+#sidebar-wrapper{
+    background: #110b0b !important;
+    color: #ffffff;
 }

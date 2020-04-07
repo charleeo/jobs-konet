@@ -14,8 +14,8 @@ class AddStateToEmployersTable extends Migration
     public function up()
     {
         Schema::table('employers', function (Blueprint $table) {
-            $table->bigInteger('states_id');
-            $table->foreign('states_id')->references('state_id')->on('states');
+            $table->unsignedBigInteger('state_id');
+            $table->foreign('state_id')->references('state_id')->on('states');
         });
     }
 
@@ -27,6 +27,6 @@ class AddStateToEmployersTable extends Migration
     public function down()
     {
         Schema::table('employers', function (Blueprint $table) {
-            $table->dropColumn(['state']);        });
+            $table->dropColumn(['state_id']);        });
     }
 }

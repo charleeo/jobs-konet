@@ -15,17 +15,17 @@ class CreateEmployersTable extends Migration
     {
         Schema::create('employers', function (Blueprint $table) {
             $table->bigIncrements('employer_id');
-            $table->bigInteger('user_id')->unsigned();
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('role_title');
-            $table->string('contact_phone_number')->default('no phone provided');
-            $table->string('job_location');
+            $table->string('phone')->default('no phone provided');
+            $table->string('summary');
             $table->string('Min_experience');
-            $table->string('application_email');
-            $table->string('application_deadline')->default('Not Specified');
+            $table->string('email');
+            $table->string('clossing_date')->default('Not Specified');
             $table->string('salary')->nullable(true);
-            $table->text('role_description');
-            $table->text('role_requirements');
+            $table->text('description');
+            $table->text('requirements');
             $table->timestamps();
         });
     }
