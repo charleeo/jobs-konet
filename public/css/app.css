@@ -10,10 +10,9 @@
   padding-top: 1.5rem;
   align-items: center;
   text-align: center;
-  background: linear-gradient(to right, rgba(11, 119, 138, 0.6), rgba(11, 119, 138, 0.2)), url("/images/general_images/mybg2.jpg");
+  background: linear-gradient(to right, rgba(11, 119, 138, 0.3), rgba(11, 119, 138, 0.5)), url("/images/general_images/mybg2.jpg");
   background-size: cover;
   background-position: top;
-  box-shadow: 2px 4px 6px 3px #000000;
 }
 
 .home_name {
@@ -34,7 +33,7 @@
 }
 
 footer {
-  background: #0b778a;
+  background: #0f6b6e;
   padding: 10px 0;
 }
 

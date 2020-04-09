@@ -1,4 +1,6 @@
-
+body{
+    overflow-x: hidden;
+}
 a:hover{
     text-decoration: none;
 }
@@ -13,7 +15,7 @@ a:hover{
     border: 2px solid #646464;
 }
 .active{
-    background: #646464 !important
+    background: #0f6b6e !important
 }
 .fixed-top{
 
@@ -22,6 +24,11 @@ a:hover{
     z-index: 100;
 }
 .brand-icon{margin-top: 3rem;}
+
+.nav-class{
+    background: #0f6b6e !important;
+
+}
 @media(max-width:1200px)
 {
         .deccided-height{
