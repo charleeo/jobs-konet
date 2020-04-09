@@ -34,12 +34,12 @@
 
 <div id="page-content-wrapper">
 
-<div class="container-fluid">
+<div class="container-flui">
         @include('includes.navbar')
     </div>
             {{-- @if(!Request::is(['/','admin/login', 'login', 'register', 'password/reset', 'home'])) --}}
 
-      <div class="container-fluid">
+      <div class="container-flui">
             <main class="py-2">
                 @include('includes.messages')
                 @yield('content')
