@@ -46,7 +46,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('applicantInfo', Applicant::where('user_id', '=',  Auth::user()->id)->first());
 
         }
-        if(isset(Auth::user()->profile_photo) && Auth::user()->profile_photo !== 'noimage.png')
+        if(isset(Auth::user()->profile_photo) && Auth::user()->profile_photo !== 'no_image.png')
         {
             $view->with('profilePhoto', 'images/profile_pics/'.Auth::user()->profile_photo);
 
