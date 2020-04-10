@@ -1,10 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Applicant;
-use App\Category;
-use App\State;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;

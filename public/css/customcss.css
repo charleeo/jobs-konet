@@ -29,6 +29,10 @@ a:hover{
     background: #0f6b6e !important;
 
 }
+
+#skills{
+    font-weight: bold;
+}
 @media(max-width:1200px)
 {
         .deccided-height{

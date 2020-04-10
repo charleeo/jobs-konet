@@ -27,6 +27,7 @@ class AddStateToEmployersTable extends Migration
     public function down()
     {
         Schema::table('employers', function (Blueprint $table) {
+            $table->dropForeign('employers_state_id_foreign');
             $table->dropColumn(['state_id']);        });
     }
 }

@@ -9,6 +9,7 @@ use App\Notifications\NewJobNotification;
 use App\State;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Notification;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,7 +24,9 @@ class EmployerController extends Controller
     public function index()
     {
         $vacancies = Employer::where('clossing_date', '>=', date('Y-m-d'))->inRandomOrder()->take(4)->get();
-        return view('welcome',compact('vacancies'));
+        $applicantsHomeView = Applicant::where('skills', '!=', null)->take(4)->inRandomOrder()->get();
+
+        return view('welcome',compact('vacancies', 'applicantsHomeView'));
     }
 
     // Return every vacancy that is not yet expired

@@ -27,7 +27,7 @@
                 @endif
             @else
                 <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle text-light " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->name }} <span class="caret"></span>
                         <span class="img-circle">
                         <img src="{{asset($profilePhoto)}}" alt="{{Auth::user()->profile_photo}}" width="15px" height="15" class="img-circle" >
@@ -54,7 +54,7 @@
                     @endphp
 
                 <li class="nav-item" >
-                    <a href="{{ route('dashboard', ['type'=> Auth::user()->users_type, 'name'=>$firstName[0]])}}" class="nav-link text-secondary">Your DashBoard</a>
+                    <a href="{{ route('dashboard', ['type'=> Auth::user()->users_type, 'name'=>$firstName[0]])}}" class="nav-link text-light">Your DashBoard</a>
                 </li>
                 @endcan
                 @endguest

@@ -22,18 +22,8 @@
                     <div class="row justify-content-center">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="designation">Designation</label>
-                                <select name="designation" id="" class="form-control">
-                                    <option value="">please select</option>
-                                    @foreach ($designations as $designation)
-                                        <option value="{{ $designation }}"
-                                        {{ old('designation') == $designation ? 'selected' : '' }}
-                                        @if(isset($oldApplicantRecord->designation) && $oldApplicantRecord->designation == $designation)
-                                        {{ 'selected'}}
-                                        @endif
-                                        > {{ $designation }}            </option>
-                                    @endforeach
-                                </select>
+                                <label for="designation">Professional Title</label>
+                                <input type="text" class="form-control" placeholder="Professional title like: Content Developer" name="designation">
                             </div>
                         </div>
                         <div class="col-md-6">

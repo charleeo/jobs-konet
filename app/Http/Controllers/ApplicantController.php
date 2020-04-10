@@ -21,7 +21,7 @@ class ApplicantController extends Controller
     // protect this route against unauthenticated users
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('showApplicantOnHomePage');
     }
 
 
@@ -30,6 +30,15 @@ class ApplicantController extends Controller
         $applicants = Applicant::all();
         return view('applicants.all', compact('applicants'));
     }
+
+
+    // Show the applicant on the home page
+    // public function showApplicantOnHomePage()
+    // {
+    //     $applicantsHomeView = Applicant::where('skills', '!=', null)->take(4)->inRandomOrder()->get();
+    //     return view('welcome', compact('applicantsHomeView'));
+    //     // dd($applicants);
+    // }
 
     public function createApplicant($id)
     {

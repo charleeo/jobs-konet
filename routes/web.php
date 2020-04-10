@@ -5,6 +5,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/', 'ApplicantController@showApplicantOnHomePage');
 
 Auth::routes(['verify'=>true]);
 
@@ -33,7 +34,7 @@ Route::get('/delete/{id}', 'EmployerController@destroy')->name('employer.delete-
 // Vacancies
 Route::get('vacancies/{id}/{category_id}/{title}', 'EmployerController@show')->name('vacancy.details');
 
-// Employers aoge
+// Employers age
 Route::get('vacancies/{id}/{title}', 'EmployerController@show')->name('vacancy-employer.details');
 Route::get('/', 'EmployerController@index');
 

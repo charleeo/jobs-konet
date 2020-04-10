@@ -19,7 +19,7 @@ class CreateEmployersTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('role_title');
             $table->string('phone')->default('no phone provided');
-            $table->string('summary');
+            $table->text('summary');
             $table->string('Min_experience');
             $table->string('email');
             $table->string('clossing_date')->default('Not Specified');

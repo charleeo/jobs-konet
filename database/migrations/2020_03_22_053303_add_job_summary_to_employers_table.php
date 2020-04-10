@@ -16,9 +16,9 @@ class AddJobSummaryToEmployersTable extends Migration
         Schema::table('employers', function (Blueprint $table) {
             $table->string('engagement');
             $table->string('experience_level');
-            $table->string('working_hours');
+            $table->text('working_hours');
             $table->string('min_qualification');
-            $table->string('skills_and_qualifications');
+            $table->text('skills_and_qualifications');
         });
     }
 
