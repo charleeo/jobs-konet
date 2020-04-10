@@ -21,7 +21,7 @@ class ApplicantController extends Controller
     // protect this route against unauthenticated users
     public function __construct()
     {
-        $this->middleware('auth')->except('showApplicantOnHomePage');
+        $this->middleware('auth')->except('show');
     }
 
 
@@ -234,6 +234,12 @@ class ApplicantController extends Controller
 
 
         return back()->with('success', 'Application Submitted successfully');
+    }
+
+    public function show($id)
+    {
+        $applicant = Applicant::where('applicant_id', $id)->firstOrFail();
+        return view('applicants.details', compact('applicant'));
     }
 }
 

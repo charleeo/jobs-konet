@@ -11,7 +11,11 @@ class State extends Model
 
     public function vacancies()
     {
-        return $this->hasMany('App\Employer');
+        return $this->hasMany('App\Employer', 'employer_id');
+    }
+    public function applicants()
+    {
+        return $this->hasMany('App\Applicant', 'applicant_id');
     }
 
 }

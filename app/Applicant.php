@@ -24,4 +24,9 @@ class Applicant extends Model
 
        return $this->hasMany('App\Experience', 'experience_id');
     }
+    public function state()
+    {
+
+       return $this->belongsTo('App\State', 'state_id');
+    }
 }

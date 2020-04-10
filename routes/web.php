@@ -104,6 +104,7 @@ Route::prefix('applicants')->group(function(){
 
     Route::post('/{id}/save-skills', 'ApplicantController@saveSkills')->name('applicant.save-skills');
     Route::post('/apply-for-job/{jobId}/{applicantId}', 'ApplicantController@applyForAjob')->name('send-my-application');
+    Route::get('/applicant-details/{id}', 'ApplicantController@show')->name('applicant.details');
 });
 
 // Route for creating profile image

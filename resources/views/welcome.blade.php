@@ -18,7 +18,7 @@
                 <h4 class=" text-dark shadow-lg py-4">We Connect The World</h4>
             </div>
         </div>
-        <h2 class="text-info">The best talents And Jobs At Your finger tip</h2>
+        <h2 class="text-info">The best Talents and Jobs at your finger tip</h2>
         <p class="text-center alert text-danger shadow-lg">Check Out Some Top Talents and Awsome JObs <i class="fas fa-arrow-down text-info fa-lg"></i> </p>
 
     </section>
@@ -27,24 +27,22 @@
 
         <section class="pl-4">
             <div class="row d-flex justify-content-center">
-                <div class="col-md-3">
-                    <h5>Available Jobs</h5>
-                </div>
+                <div class="col-md-3"><h4 class="text text-center">Potential Employees</h4></div>
                 <div class="col-md-7">
-                    <div class=" ">
-                        <a href="{{route('all-vacancies')}}" class="text-dark">VACANCIES CORNER FOR MORE</a>
-                    </div>
+                    <h4 class="text-center">
+                        <a href="{{route('all-vacancies')}}" class="text-dark"> Visit Employees Corner For More</a>
+                    </h4>
                 </div>
             </div>
-            <br/>
-            <div class="row  d-flex flex-wramp justify-content-center" >
+
+            <div class="row  d-flex flex-wramp justify-content-center " >
             @foreach ($applicantsHomeView as $applicant)
 
-            <div class="col-md-5 mb-3  ml-2">
+            <div class="col-md-5 mb-3  ml-2" >
                 <div class="align-self-center ">
                     <div class="row">
                         {{-- Image and Title --}}
-                        <div class="col-md-5  shadow py-2">
+                        <div class="col-sm-5  shadow py-2 pb-3">
                             <h6 class=" justify-content-center">
                                 <img src="{{asset('images/profile_pics/'.$applicant->user->profile_photo)}}" alt="profile image" class="rounded-circle" width="100" height="100">
                             </h6>
@@ -55,17 +53,20 @@
                             <h6>
                                 Professional Title: {{$applicant->designation}}
                             </h6>
+                            <a href="{{route('applicant.details', [$applicant->applicant_id])}}" class="text-info">Detailes Here
+                            </a>
                         </div>
                         {{-- Skills --}}
-                        <div class="col-md-7 shadow py-2">
+                        <div class="col-sm-7 shadow py-2 pb-3">
                             <div class="row">
                                 <div class="col ">
                                     <h6 class="text-center">Skills:</h6> <hr/>
                                     <ol class="d-flex flex-wrap pl-4" id="skills">
                                         @foreach (explode(',', $applicant->skills) as $skill)
-                                            <li class="ml-3">{{$skill}}</li> &nbsp;&nbsp;
+                                            <li class="ml-3">{{strtolower($skill)}}</li> &nbsp;&nbsp;
                                         @endforeach
                                     </ol>
+
                                 </div>
                             </div>
                         </div>

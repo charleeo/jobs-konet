@@ -32,6 +32,7 @@ a:hover{
 
 #skills{
     font-weight: bold;
+    text-transform: capitalize;
 }
 @media(max-width:1200px)
 {
