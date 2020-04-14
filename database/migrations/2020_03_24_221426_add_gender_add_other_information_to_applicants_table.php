@@ -18,7 +18,7 @@ class AddGenderAddOtherInformationToApplicantsTable extends Migration
             $table->foreign('state_id')->references('state_id')->on('states')->onDelete('CASCADE');
             $table->string('gender');
             $table->string('designation');
-            $table->string('about_applicant')->default('Not stated')->nullable();
+            $table->text('about_applicant')->default('Not stated')->nullable();
             $table->string('birth_date');
         });
     }

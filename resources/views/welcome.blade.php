@@ -3,23 +3,26 @@
 @section('content')
 <main>
     <section class="home">
-        <div class="row d-flex">
-            <div class="col-md-12">
-                <h1 class="home_name">
-                    <small class="text text-dark">Welcome To</small>
-                    <span class="home_name--last"> {{ config('app.name', 'MultiAuth') }}</span>
-                </h1>
-                <svg height="150" width="500">
-                    <ellipse cx="140" cy="100" rx="120" ry="30" style="fill:#ae3422" />
-                    <ellipse cx="110" cy="45" rx="70" ry="15" style="fill:#000" />
-                    <ellipse cx="120" cy="70" rx="90" ry="20" style="fill:#0b778a" />
-                    Sorry, your browser does not support inline SVG.
-                </svg>
-                <h4 class=" text-dark shadow-lg py-4">We Connect The World</h4>
+        <header>
+            <div class="row d-flex">
+                <div class="col-md-12">
+                    <h1 class="home_name">
+                        <small class="text text-dark">Welcome To</small>
+                        <span class="home_name--last"> {{ config('app.name', 'MultiAuth') }}</span>
+                    </h1>
+                    {{-- <svg height="150" width="500">
+                        <ellipse cx="140" cy="100" rx="120" ry="30" style="fill:#ae3422" />
+                        <ellipse cx="110" cy="45" rx="70" ry="15" style="fill:#000" />
+                        <ellipse cx="120" cy="70" rx="90" ry="20" style="fill:#0b778a" />
+                        Sorry, your browser does not support inline SVG.
+                    </svg> --}}
+                    <h4 class=" text-dark  py-4">We Connect The World</h4>
+                </div>
             </div>
-        </div>
+        </header>
+        <span id="moon" class="text-center"></span>
         <h2 class="text-info">The best Talents and Jobs at your finger tip</h2>
-        <p class="text-center alert text-danger shadow-lg">Check Out Some Top Talents and Awsome JObs <i class="fas fa-arrow-down text-info fa-lg"></i> </p>
+        <button >Check Here For Details<i class="fas fa-arrow-down text-info fa-lg"></i> </button>
 
     </section>
 </main>

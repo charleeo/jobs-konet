@@ -67,7 +67,6 @@
 
                                         @endforeach
                                     </ul>
-
                                 </div>
                             </div>
                         </div>
@@ -75,5 +74,36 @@
                 </div>
             </div>
         </div>
+        <hr>
+    </section>
+    <section class="pl-4">
+        @foreach($experiences as $experience)
+        <h1 class="text-center">Work History</h1> <hr>
+        <div class="row justify-content-content">
+            <div class="col-md-6 border-right">
+                <h4>Detailed Information</h4>
+                <h6>Role Title: {{$experience->job_title}}</h6>
+                <small>
+                  <p> <b>Engagemnet Time: &nbsp;</b> {{$experience->start_month}} Of {{$experience->start_year}} &nbsp; --- &nbsp;
+                @if($experience->still_working_there == 'no')
+                    {{$experience->end_month}}  {{$experience->end_year}}</p>
+                    @else
+                    Date
+                @endif
+                </small>
+                <h6>Employer : {{$experience->employer_name}}</h6>
+                <small>
+                    <hr>
+                    Department: {{$experience->department}} <br/>
+                    Engagemnet Type: {{$experience->engagement_type}} <br/>
+                    Industry: {{$experience->category->category_name}} <br/>
+                </small>
+            </div>
+            <div class="col-md-6">
+                <h4>Work Description</h4>
+                <p>{{$experience->work_description}}</p>
+            </div>
+        </div>
+        @endforeach
     </section>
     @endsection

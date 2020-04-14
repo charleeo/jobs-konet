@@ -21,7 +21,7 @@ class CreateExperienceTable extends Migration
             $table->string('job_title');
             $table->unsignedBigInteger('state_id');
             $table->foreign('state_id')->references('state_id')->on('states')->onUpdate('CASCADE')->onDelete('CASCADE');
-            $table->float('salary', 8,2);
+            $table->string('salary');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('category_id')->on('categories')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->string('engagement_type');
@@ -32,7 +32,7 @@ class CreateExperienceTable extends Migration
             $table->string('end_year')->nullable();
             $table->string('experience_level');
             $table->text('work_description');
-            $table->enum('still_working_there', ['yes', 'no'])->nullable();
+            $table->enum('still_working_there', ['yes', 'no'])->default('no');
             $table->timestamps();
         });
     }

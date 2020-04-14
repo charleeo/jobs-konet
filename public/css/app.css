@@ -5,14 +5,12 @@
 }
 
 .home {
-  min-height: 70vh;
+  min-height: 80vh;
   margin-top: -8px;
   padding-top: 1.5rem;
   align-items: center;
   text-align: center;
-  background: linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2));
-  background-size: cover;
-  background-position: top;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.2));
   box-shadow: 2px 4px 6px 3px #000000;
 }
 
@@ -31,6 +29,28 @@
   text-align: start;
   font-size: 2rem;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.home header {
+  height: 45vh;
+  width: 100%;
+  border-radius: 0 0 85% 85%/30%;
+  box-shadow: 2px 4px 6px 3px #000000fb;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.99), rgba(255, 255, 255, 0.5)), url("/images/general_images/mybg2.jpg");
+  background-size: cover;
+  background-position: top;
+  background-attachment: fixed;
+  margin-top: -1.5rem;
+}
+
+.home button {
+  background: #ffff;
+  color: #000;
+  border-radius: 50%;
+  box-shadow: 0 3px 20px 0 #0000003b;
+  border: none;
+  outline: none;
+  padding: 30px 20px;
 }
 
 @media (max-width: 969px) {

@@ -15,4 +15,9 @@ class Category extends Model
 
         return $this->hasMany('App\Employer', 'employer_id') ;
     }
+    public function experiences()
+    {
+
+        return $this->hasMany('App\Experience', 'experience_id') ;
+    }
 }

@@ -164,7 +164,7 @@ class ApplicantController extends Controller
         $extensions = ['docx','doc', 'txt', 'pdf'];
         $written_cover_letter = $request->written_cover_letter;
         $uploaded_cover_letter = $request->uploaded_cover_letter;
-        $path = public_path('/files/application/');
+        $path = realpath('/files/application/');
         $message  = 'Attached to this mail is  a copy of my resume for details ';
         $saveLetter = $request->save_letter;
 
@@ -239,7 +239,10 @@ class ApplicantController extends Controller
     public function show($id)
     {
         $applicant = Applicant::where('applicant_id', $id)->firstOrFail();
-        return view('applicants.details', compact('applicant'));
+        $experiences =  Experience::where('applicant_id', '=', $id)->take(2)->orderBy('start_year', 'DESC')->get() ;
+
+        // dd($experiences);
+        return view('applicants.details', compact('applicant', 'experiences'));
     }
 }
 

@@ -106,22 +106,31 @@ class EmployerController extends Controller
             'clossing_date' => ['required', 'date'],
 
         ]);
-        $users = User::where('users_type', '=', 'applicant')->get();
+        // $users = User::where('users_type', '=', 'applicant')->get();
+        $users = Applicant::all();
+        // dd($users);
         $title = $request->role_title;
         $employer = Employer::create($request->all());
         $employer->save();
         $id = $employer->employer_id;
         $category_id = $employer->category_id;
+
         $details = [
-            'greeting' => 'Hi There',
+            'greeting' => 'Hi! There',
             'body' => 'New '.$title. ' Role For You ',
-            'thanks' => 'Thank you for using platform!',
+            'thanks' => 'Thank you for using our platform!',
             'actionText' => 'View Details',
             'actionURL' => url(route('vacancy.details',[$id, $category_id, $title])),
         ];
 
 
-        Notification::send($users, new NewJobNotification($details));
+        // Notification::send($users, new NewJobNotification($details));
+        foreach($users as $user)
+        {
+
+            Notification::route('mail', $user->applicant_email)
+            ->notify(new NewJobNotification($details));
+        }
 
         return back()->with('success','Vacancy created successfully!');
 

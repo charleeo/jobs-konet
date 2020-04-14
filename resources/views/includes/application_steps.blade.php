@@ -106,14 +106,14 @@
 
             </div>
         </form>
-        @elseif(!$applicantInfo)
+        @elseif(!$applicantInfo && auth::user()->users_type == 'applicant')
         <p class="pl-2">
-            Please use the create profile tab atthe left hand side of the screen to create some records.
+            Please use the create profile tab at the left hand side of the screen to create some records.
         </p>
         <p class="pl-2">
             Or quickly create your profile <a href="{{route('applicant.data-create', [Auth::user()->id])}}" class="btn btn-link">here</a>
         </p>
-        @else
+        @elseif(auth::user()->users_type == 'employer')
         {{-- for employers --}}
         <p class="p-3">You are registered as an employer. before you can apply through this medium, you need to create a new record as an aplicant </p>
         @endif

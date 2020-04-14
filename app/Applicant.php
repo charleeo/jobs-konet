@@ -19,10 +19,10 @@ class Applicant extends Model
 
        return $this->hasMany('App\Education', 'education_id');
     }
-    public function experiences()
+    public function experience()
     {
 
-       return $this->hasMany('App\Experience', 'experience_id');
+       return $this->belongsTo('App\Experience', 'experience_id');
     }
     public function state()
     {
