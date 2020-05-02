@@ -8,11 +8,10 @@
                 <div class="card-header">Dashboard</div>
 
                 <div class="card-body">
-                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi perferendis voluptatibus, ipsum ratione maiores dolorum culpa commodi, assumenda neque impedit adipisci veritatis error inventore officiis velit soluta nulla, architecto distinctio.
-                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi perferendis voluptatibus, ipsum ratione maiores dolorum culpa commodi, assumenda neque impedit adipisci veritatis error inventore officiis velit soluta nulla, architecto distinctio.
-                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi perferendis voluptatibus, ipsum ratione maiores dolorum culpa commodi, assumenda neque impedit adipisci veritatis error inventore officiis velit soluta nulla, architecto distinctio.
-                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi perferendis voluptatibus, ipsum ratione maiores dolorum culpa commodi, assumenda neque impedit adipisci veritatis error inventore officiis velit soluta nulla, architecto distinctio.
-                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi perferendis voluptatibus, ipsum ratione maiores dolorum culpa commodi, assumenda neque impedit adipisci veritatis error inventore officiis velit soluta nulla, architecto distinctio.
+                        <h1>
+                                This is Your Dashboard
+                            </h1>
+                            <p>Features comming soon</p>
                 </div>
             </div>
         </div>

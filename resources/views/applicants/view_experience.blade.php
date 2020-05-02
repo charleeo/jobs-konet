@@ -3,7 +3,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-6 offset-md-3">
                     <h5 class="mb-0">
-                        <button class="btn btn-success collapsed" data-toggle="collapse" data-target="#view-experience" aria-expanded="false" aria-controls="view-experience">
+                        <button class="btn btn-info collapsed" data-toggle="collapse" data-target="#view-experience" aria-expanded="false" aria-controls="view-experience">
                         Manage Experience Information
                         </button>
                     </h5>

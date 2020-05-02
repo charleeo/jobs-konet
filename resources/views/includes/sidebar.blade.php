@@ -46,6 +46,10 @@
             <a href="{{route('applicant.create-cv',[Auth::user()->id]) }}" class="list-group-item list-group-item-action my-sidebar-color shadow-lg {{ (request()->is('applicants/resume/*')) ? 'active' : '' }}">Upload A Resume
             </a>
 
+            <a href="{{route('create.alert.preference',[Auth::user()->id]) }}" class="list-group-item list-group-item-action my-sidebar-color shadow-lg {{ (request()->is('
+            applcants/create/alert-preference')) ? 'active' : '' }}">Create Alert Preference
+            </a>
+
             <a href="{{route('applicant.create-skills',[Auth::user()->id]) }}" class="list-group-item list-group-item-action my-sidebar-color shadow-lg {{ (request()->segment(2) == 'skills') ? 'active' : '' }}">Add Skills To Your Profile
             </a>
             @endif

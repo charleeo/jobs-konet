@@ -104,13 +104,28 @@ Route::prefix('applicants')->group(function(){
 
     Route::post('/{id}/save-skills', 'ApplicantController@saveSkills')->name('applicant.save-skills');
     Route::post('/apply-for-job/{jobId}/{applicantId}', 'ApplicantController@applyForAjob')->name('send-my-application');
+
     Route::get('/applicant-details/{id}', 'ApplicantController@show')->name('applicant.details');
+
+    Route::get('/applicant-all', 'ApplicantController@index')->name('applicant.all');
+
+    Route::post('/applicant-search', 'ApplicantController@searchForApplicant')->name('search-applicants');
+
+    // create alert preference
+    Route::get('/{id}/create/alert-preference', 'ApplicantController@createAlertPreference')->name('create.alert.preference');
+
+    // save alert to databse
+    Route::post('/{id}/save/alert-preferecne', 'ApplicantController@storeAlert')->name('save.alert');
+    Route::get('delete/{id}', 'ApplicantController@deleteApplicant')->name('delete');
 });
 
 // Route for creating profile image
 Route::get('auth/create-photo', 'ProfileImageController@createProfileImage')->name('profile-upload');
 
-
+// save profile photo by all users
 Route::post('auth/{id}/save-profile-photo', 'ProfileImageController@storeProfileImage')->name('profile-store');
+
+// reach out to applicant by potential employer
+Route::post('employer/reach-out', 'EmployerController@reachOut')->name('reach-out');
 
 // sending application mails

@@ -1,7 +1,10 @@
 footer{
-
+    width: 100vw;
     background: #0f6b6e;
-    padding: 10px 0;
+    padding: 1px 0;
+    margin-top:1rem;
+    position: static;
+    bottom: 0;
     ul{
         display: flex;
         flex-flow: row wrap;
@@ -10,6 +13,83 @@ footer{
         li{
            color: #fff;
            line-height: 76px;
+        }
+
+    }
+    article{
+        display: flex;
+        flex-flow: column;
+        background:  #141313 ;
+
+
+
+        justify-content: space-around;
+
+        small{
+            color: #ffffff;
+            font-style: italic;
+            line-height: 3rem;
+            padding-left: 0.5rem;
+            font-size: 1.4rem;
+            text-align: start;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            justify-content: space-between;
+        }
+        span{
+            // line-height: 0.2rem;
+            font-size: 2rem;
+            color: #972c2c;
+            text-align: start;
+            display: inline-block;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            margin-left: 37rem;
+
+
+        }
+        p{
+            color:orange;
+            font-synthesis: style;
+            font-size: 2rem;
+            // line-height: 4rem;
+            text-transform: uppercase;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            padding-right:2rem ;
+            text-align: start;
+            margin-left: 40rem;
+
+        }
+    }
+}
+
+@media(max-width:1054px)
+{
+    footer{
+    //     position: relative;
+
+        article
+        {
+    //         flex-flow: column;
+    //         small{
+    //             line-height: 2rem;
+    //         }
+    //         span{
+    //             line-height: 2rem;
+    //             display: inline-block;
+    //             text-align: start;
+    //             font-size: 2rem;
+    //             right: 0;
+    //         }
+    p{
+        text-align: center;
+        margin-left: 1rem;
+    }
+    small{
+        text-align: center;
+    }
+    span{
+        text-align: center;
+        margin-left: 1rem;
+    }
         }
 
     }

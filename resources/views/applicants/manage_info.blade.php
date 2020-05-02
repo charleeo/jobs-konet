@@ -14,6 +14,13 @@
                             @include('applicants.view_personal_data')
                         @endif
                 </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-6 offset-md-3">
+                            <a href="{{ route ('delete', [$applicantInfo->applicant_id]) }}"
+                                    onclick='return confirm("Are you sure you want to delete ?  This action will remove all your records from the system, the only information that will be left are your login credentials. Click Ok to delete or cancel to stop the action")' class=" btn btn-danger"> Delete
+                            </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

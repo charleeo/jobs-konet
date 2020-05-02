@@ -11,34 +11,30 @@ use Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\ValidateApplicantsData;
 use App\Mail\SendMyApplicationMail;
+use App\Preference;
 use App\User;
+use App\State;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Filesystem\Filesystem;
-
+use Illuminate\Support\Facades\File;
 
 class ApplicantController extends Controller
 {
     // protect this route against unauthenticated users
     public function __construct()
     {
-        $this->middleware('auth')->except('show');
+        $this->middleware('auth')->except(['show','index', 'searchForApplicant']);
     }
 
 
     public function index()
     {
         $applicants = Applicant::all();
-        return view('applicants.all', compact('applicants'));
+        return view('applicants.all_applicants', compact('applicants'));
     }
 
 
-    // Show the applicant on the home page
-    // public function showApplicantOnHomePage()
-    // {
-    //     $applicantsHomeView = Applicant::where('skills', '!=', null)->take(4)->inRandomOrder()->get();
-    //     return view('welcome', compact('applicantsHomeView'));
-    //     // dd($applicants);
-    // }
+
 
     public function createApplicant($id)
     {
@@ -239,11 +235,131 @@ class ApplicantController extends Controller
     public function show($id)
     {
         $applicant = Applicant::where('applicant_id', $id)->firstOrFail();
-        $experiences =  Experience::where('applicant_id', '=', $id)->take(2)->orderBy('start_year', 'DESC')->get() ;
+        $experiences =  Experience::where('applicant_id', '=', $id)->take(3)->orderBy('start_year', 'DESC')->get() ;
+        $educations =  Education::where('applicant_id', '=', $id)->orderBy('start_year', 'DESC')->get() ;
 
         // dd($experiences);
-        return view('applicants.details', compact('applicant', 'experiences'));
+        return view('applicants.details', compact('applicant', 'experiences', 'educations'));
     }
+
+
+    // Create a search ability
+
+    public function searchForApplicant(Request $request)
+    {
+        $request->validate([
+            'search_name' => ['required']
+        ]);
+        $search = $request->search_name;
+
+        $stateId = intval($request->state_id);
+
+        if($stateId != '')
+        {
+            $applicants = Applicant::where('designation', 'LIKE', '%' .$search. '%')
+                ->where([
+                ['state_id', '=', $stateId]
+            ])->get();
+            $stateName = State::where('state_id', $stateId)
+
+            ->pluck('state_name')
+            ->first();
+        }
+
+        else
+        {
+            $applicants = Applicant::where('designation', 'LIKE', '%' .$search. '%')->get();
+            $stateName = '';
+        }
+
+        if(count($applicants) >  0){
+            return view('applicants.all_applicants',compact('applicants'));
+        }
+        return back()->with('info', 'No result matches your search for '. $search . ' in ' .$stateName);
+
+    }
+
+    // Create alert preference
+    public function createAlertPreference($id)
+    {
+        $applicant =  Applicant::whereUser_id($id)->firstOrFail();
+        return view('applicants.create_alert', compact('applicant'));
+    }
+
+    // save alert preference
+    public function storeAlert(Request $request, $id)
+    {
+        $request->validate([
+            'alert_type' => ['required', 'min:4', 'string']
+        ]);
+        $applicant = Applicant::whereUser_id($id)->firstOrFail();
+        $alert_preference = $applicant->alert_preference;
+        $alert_preference_to_array = explode(',', $alert_preference);
+
+
+        $all_collection = Preference::all()->pluck('preference_name');
+        $array_collection =  $all_collection->toArray();//convert the collection to array
+
+        $alert = $request->alert_type;
+        $alert = strtolower($alert);
+        $alert = strtr($alert, [','=>'']);
+
+        if($alert_preference != null){
+            if(!in_array($alert, $alert_preference_to_array))
+            {
+
+                array_push($alert_preference_to_array, $alert);
+                // convert to string before savingto database
+                $applicant->alert_preference = strtolower (implode(',', $alert_preference_to_array));
+                $applicant->save();
+            }
+        }
+        else{
+            $applicant->alert_preference = $alert;
+            $applicant->save();
+        }
+
+
+
+
+        // this logic is to collect job alert records from various applicant and buid them up the preference table so that in subsequent time,they will only have select from the available record
+        $prefernce = new Preference();//preference tbale
+
+        $prefernce->preference_name = $alert;
+        if($all_collection->count() > 0){
+
+                if(!in_array(($alert), $array_collection))
+                {
+                    $prefernce->save();
+                }
+        }
+        else{$prefernce->save();}
+        return back()->with('success', 'Your JOb alert preference has been created, You can still add more');
+
+
+    }
+
+    public function deleteApplicant($id)
+    {
+        $user = Auth::user();
+        $applicant = Applicant::where('user_id', $user->id)->firstOrFail();
+        // dd($applicant->user_id." Applicant", $user->id);
+        if($applicant->user_id != $user->id)
+        {
+            return back()->with('warning', "You can't delete other persons resource");
+        }
+
+            $resume= $applicant->resume;
+            $pathToResume = public_path('files/resumes/'.$resume);
+
+            if(File::exists($pathToResume))
+            {
+                unlink($pathToResume);
+            }
+        $applicant->delete();
+        return redirect('/profile')->with('success', "Record Deleted Successfully");
+    }
+
 }
 
 // try {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Applicant;
 use App\Category;
 use App\Employer;
+use App\Mail\ReachOutToApplicantMail;
 use App\Notifications\NewJobNotification;
 use App\State;
 use App\User;
@@ -12,12 +13,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Notification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class EmployerController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'show', 'allVacancies', 'searchForVacancy']);
+        $this->middleware('auth')->except(['index', 'show', 'allVacancies', 'searchForVacancy','reachOut']);
     }
 
     // Return some of the available vacancies by limiting the number per query to 4
@@ -221,6 +223,34 @@ class EmployerController extends Controller
     {
         Employer::find($id)->delete();
         return back()->with('success','Vacancy Deleted successfully!');
+    }
+
+    public function reachOut(Request $request)
+    {
+        $request->validate([
+            'name'=>'required',
+            'message'=>'required',
+            'email'=>['required', 'email'],
+            'subject' =>'required'
+        ]);
+        $name = $request->name;
+        $message = $request->message;
+        $email = $request->email;
+        $subject = $request->subject;
+        $applicant_id = $request->applicant_id;
+        $applicant = Applicant::where('applicant_id', $applicant_id)->firstOrFail();
+
+        $data = [
+            'recipient_name' => $applicant->user->name,
+            'bodyMessage' => $message,
+            'subject' => $subject,
+            'senderName' => $name,
+            'email' => $email,
+
+        ];
+
+        Mail::to($applicant->applicant_email)->send(new ReachOutToApplicantMail($data, $email));
+        return back()->with('success', 'Message Sent to '.$applicant->user->name);
     }
 
 

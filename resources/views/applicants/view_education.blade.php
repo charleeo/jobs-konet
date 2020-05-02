@@ -17,8 +17,8 @@
                                 <div class="row justify-content-center">
                                     <div class="col-md-6 offset-md-3">
                                         <h5 class="mb-0">
-                                            <button class="btn btn-success collapsed" data-toggle="collapse" data-target="#collapseThree-{{$education->education_id}}" aria-expanded="false" aria-controls="collapseThree3{{$education->education_id}}">
-                                             Experience Details {{$key+1}}
+                                            <button class="btn btn-info collapsed" data-toggle="collapse" data-target="#collapseThree-{{$education->education_id}}" aria-expanded="false" aria-controls="collapseThree3{{$education->education_id}}">
+                                             Education Details {{$key+1}}
                                             </button>
                                         </h5>
                                     </div>

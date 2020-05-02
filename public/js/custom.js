@@ -13,6 +13,7 @@ let saveLetter = document.querySelector('#save_letter');
 let userResume = document.querySelector('#user_resume');
 let newResumeLabel = document.querySelector('#new_resume_label');
 let checkDiv = document.querySelector('#check-div');
+let alertTypeInputFeld = document.querySelector('#alert-type');
 
 // This function removes white spaces from a string
 function removeSpaces(string) {
@@ -123,3 +124,10 @@ $("#menu-toggle").click(function(e) {
   $("#wrapper").toggleClass("toggled");
 
 });
+
+if(document.body.contains(alertTypeInputFeld))
+{
+    alertTypeInputFeld.addEventListener('keyup', ()=>{
+       alertTypeInputFeld.value = (alertTypeInputFeld.value).replace(/,/g, '')
+    });
+}

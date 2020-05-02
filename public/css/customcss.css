@@ -3,6 +3,7 @@ body{
 }
 a:hover{
     text-decoration: none;
+    color: inherit;
 }
 .deccided-height{
     height: 260px;
@@ -27,6 +28,7 @@ a:hover{
 
 .nav-class{
     background: #0f6b6e !important;
+
 
 }
 

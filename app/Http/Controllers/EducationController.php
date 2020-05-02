@@ -97,7 +97,17 @@ class EducationController extends Controller
 
             Education::whereEducation_id($id)->update($request->except(['_token', '_method', 'end_month', 'end_year']));
         }
+
          Education::whereEducation_id($id)->update($request->except(['_token', '_method', ]));
         return back()->with('success','Your Record has been Updated successfully!');
     }
+
+    // public function deleteEducation($id)
+    // {
+    //     $applicantId = Applicant::where('user_id',Auth::user()->id)->firstOrFail();
+    //     if($applicantId->user_id !=Auth::user()->id )
+    //     {
+    //         return
+    //     }
+    // }
 }

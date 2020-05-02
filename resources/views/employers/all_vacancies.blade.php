@@ -20,8 +20,8 @@
                     <th>Title</th>
                     <th>Expiration Date</th>
                     <th>Details</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <th class="text-info"><i class="fas fa-eraser"></i>  Edit</th>
+                    <th class="text-danger"> <i class="fas fa-trash"></i> Delete</th>
                 </thead>
                 <tbody>
 
@@ -39,12 +39,12 @@
                             </a>
                         </td>
                         <td>
-                            <a href="{{ route ('employer.edit', [$vacancy->employer_id]) }}"> Edit
+                            <a href="{{ route ('employer.edit', [$vacancy->employer_id]) }}" class="text-info"> Edit
                             </a>
                         </td>
                         <td>
                             <a href="{{ route ('employer.delete-vacancy', [$vacancy->employer_id]) }}"
-                                    onclick='return confirm("Are you sure you want to delete ?")'> Delete
+                                    onclick='return confirm("Are you sure you want to delete ?")' class="text-danger"> Delete
                             </a>
                         </td>
                     </tr>

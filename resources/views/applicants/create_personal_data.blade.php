@@ -3,11 +3,11 @@
             <div class="row justify-content-center">
                 <div class="col-md-6 offset-md-3">
                     <h5 class="mb-0">
-                        <button class="btn btn-success text-center" data-toggle="collapse" data-target="#personalData" aria-expanded="true" aria-controls="personalData">
+                        <button class="btn btn-info text-center" data-toggle="collapse" data-target="#personalData" aria-expanded="true" aria-controls="personalData">
                         @if(empty($applicantInfo->user_id))
-                        Create Your Profile
+                        Create  Profile Information
                         @elseif(Request::is('applicants/edit*'))
-                                Edit Your Profile
+                                Edit  Profile Information
                         @endif
                         </button>
                     </h5>
@@ -23,14 +23,14 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="designation">Professional Title</label>
-                                <input type="text" class="form-control" placeholder="Professional title like: Content Developer" name="designation">
+                                <input type="text" class="form-control" placeholder="Professional title like: Content Developer" name="designation" value="{{ old('designation', (isset($oldApplicantRecord->designation))? $oldApplicantRecord->designation : '') }} ">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="gender">Gender</label>
                                 <select name="gender" id="" class="form-control">
-                                    <option value="">please your genger</option>
+                                    <option value="">please select your genger</option>
                                     @foreach ($gender as $sex)
                                         <option value="{{ $sex }}"
                                         {{ old('gender') == $sex ? 'selected' : '' }}
@@ -113,7 +113,7 @@
                         <div class="col-md-2 offset-md-2 mt-1">
                             <label for=""></label>
                             <div class="form-group">
-                               <button class="form-control btn btn-success">Save</button>
+                               <button class="form-control btn btn-secondary">Save</button>
                             </div>
                         </div>
                     </div>

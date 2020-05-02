@@ -3,7 +3,7 @@
 {{ config('app.name', 'MultiAuth') }}
 </a>
 
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+<button class="navbar-toggler bg-light" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
 <span class="navbar-toggler-icon"></span>
 </button>
 
@@ -40,6 +40,7 @@
                         document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
+                        <a href="{{ route('home')}}" class="dropdown-item">Profile</a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
@@ -53,9 +54,9 @@
                     $firstName = explode(' ', Auth::user()->name);
                     @endphp
 
-                <li class="nav-item" >
+                {{-- <li class="nav-item" >
                     <a href="{{ route('dashboard', ['type'=> Auth::user()->users_type, 'name'=>$firstName[0]])}}" class="nav-link text-light">Your DashBoard</a>
-                </li>
+                </li> --}}
                 @endcan
                 @endguest
                 </ul>

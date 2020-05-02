@@ -14,7 +14,7 @@
                 <div class="row justify-content-center">
                 <div class="col-md-6 offset-md-3">
                     <h5 class="mb-0">
-                        <button class="btn btn-success ">
+                        <button class="btn btn-info ">
                         Add Education Information
                         </button>
                     </h5>
@@ -147,12 +147,12 @@
                         </div>
                         <div class="col-md-3">
                             <div class= 'form-group'>
-                                <button class="btn btn-dark form-control submit-data ">Cancel</button>
+                                <button class="btn btn-secondary form-control submit-data ">Cancel</button>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <button class="btn btn-success form-control " >Save</button>
+                                <button class="btn btn-info form-control " >Save</button>
                             </div>
                         </div>
                     </div>
