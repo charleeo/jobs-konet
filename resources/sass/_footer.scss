@@ -1,18 +1,22 @@
 footer{
     width: 100vw;
-    background: #0f6b6e;
-    padding: 1px 0;
-    margin-top:1rem;
+    background: $primary-color;
+    padding: 40px 0;
+    // margin-top:3rem;
     position: static;
-    bottom: 0;
+    bottom: 0px;
+    // box-sizing: border-box;
+    // box-shadow: 4px 4px 4px 4px #ffffff;
+    // border-top: 6px solid #ffffff;
     ul{
         display: flex;
         flex-flow: row wrap;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
         li{
-           color: #fff;
+           color: #000000;
            line-height: 76px;
+           padding: 0 2rem 0 2rem;
         }
 
     }
@@ -20,9 +24,6 @@ footer{
         display: flex;
         flex-flow: column;
         background:  #141313 ;
-
-
-
         justify-content: space-around;
 
         small{

@@ -7,7 +7,7 @@
         <div class="col-md-9">
             <div class="card">
                 <div class="card-header ">
-                    <div class="col-md-6 text-center text-success">Upload A Profile Photo</div>
+                    <div class="col-md-6 text-center text-dark">Upload A Profile Photo</div>
                 </div>
 
                 <div class="card-body shadow-lg border border-dark">
@@ -26,7 +26,7 @@
                         <div class="row justify-content-center">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <button class="btn btn-success" >Save Photo</button>
+                                    <button class="btn btn-dark" >Save Photo</button>
                                 </div>
                             </div>
                         </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Applicant;
+use App\Employer;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -16,7 +17,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('index');
     }
 
     /**
@@ -26,24 +27,34 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+          // Return some of the available vacancies by limiting the number per query to 4
+        $title = "Home Page";
+        $vacancies = Employer::where('clossing_date', '>=', date('Y-m-d'))->inRandomOrder()->take(4)->get();
+        $applicantsHomeView = Applicant::where('skills', '!=', null)->take(4)->inRandomOrder()->get();
+        return view('welcome',compact('vacancies', 'applicantsHomeView','title'));
+    }
+
+    public function showProfilePage(){
+        $user = Auth::user()->name;
+        $title = " $user Profile Page";
+        return view('home', compact('title'));
     }
 
     public function userType(Request $request, $userType )
     {
+        $title = "User's information";
 
         if (Gate::allows('user_type', Auth::user())) {
             $user = User::where('users_type', $userType)->first();
             $applicantInfo = Applicant::where('user_id', '=',  Auth::user()->id)->first();
-            // dd($applicantInfo->user_id);
 
             if(isset($user) && $user->users_type == 'applicant'){
 
-                return view('applicants.applicant', compact('user', 'applicantInfo'));
+                return view('applicants.applicant', compact('user', 'applicantInfo','title'));
             }
            else if(isset($user) && $user->users_type == 'employer'){
 
-                return view('employers.employer', compact('user'));
+                return view('employers.employer', compact('user','title'));
             }
             return 'User not found';
         }
@@ -56,13 +67,16 @@ class HomeController extends Controller
     {
         $user = User::where('users_type', $userType)->first();
         $applicantInfo = Applicant::where('applicant_id','=', $id)->firstOrFail();
-        return view('applicants.applicant', compact('user', 'applicantInfo'));
+        $tile = $user->name;
+        return view('applicants.applicant', compact('user', 'applicantInfo','title'));
     }
 
     public function editProfile($id)
     {
+
         $user = Auth::user()->find($id);
-        return view('auth.edit-register',compact('user'));
+        $title= $user->name. " Edit Profile";
+        return view('auth.edit-register',compact('user','title'));
     }
 
      public function updateProfile(Request $request, $id)

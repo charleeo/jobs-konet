@@ -7,7 +7,7 @@ use App\Education;
 use App\Employer;
 use App\Experience;
 use App\Http\Requests\ValidateAplicantsExperienceData;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\ValidateApplicantsData;
 use App\Mail\SendMyApplicationMail;
@@ -29,8 +29,9 @@ class ApplicantController extends Controller
 
     public function index()
     {
+        $title = "All Jobs Applicants";
         $applicants = Applicant::all();
-        return view('applicants.all_applicants', compact('applicants'));
+        return view('applicants.all_applicants', compact('applicants','title'));
     }
 
 
@@ -38,8 +39,14 @@ class ApplicantController extends Controller
 
     public function createApplicant($id)
     {
+        $title ='Create Applicant';
         $oldApplicantRecord = Applicant::where('applicant_id', '=', $id)->first();
-        return view('applicants.manage_info', compact('oldApplicantRecord'));
+        if(!empty($oldApplicantRecord)){
+            if(Auth::user()->id !== $oldApplicantRecord->user_id){
+                return back()->with('error','You can\'t access another person\'s data, that is thefting');
+            }
+        }
+        return view('applicants.manage_info', compact('oldApplicantRecord','title'));
     }
 
 
@@ -68,8 +75,9 @@ class ApplicantController extends Controller
 // Create Resume
     public function createResume($id)
     {
+        $title = "Resume Creation";
         $applicant = Applicant::whereUser_id($id)->first();
-       return view('applicants.upload_resume', compact('applicant'));
+       return view('applicants.upload_resume', compact('applicant','title'));
     }
 
 
@@ -118,9 +126,10 @@ class ApplicantController extends Controller
     // method for skills creation
      public function createSkills($id)
      {
+         $title ="Skills Creation";
          $applicant =  Applicant::whereUser_id($id)->firstOrFail();
          $skills = explode(',',$applicant->skills);
-         return view('applicants.create_skills', compact('applicant', 'skills'));
+         return view('applicants.create_skills', compact('applicant', 'skills','title'));
      }
 
      // method for skills storage
@@ -133,11 +142,18 @@ class ApplicantController extends Controller
         $availableSkills = explode(',',$applicant->skills); //these are the skills from the database
         $skills = $request->skills ;//these are the input values
 
+        //check if the available skills from the database is similar to the inputed value
+        $skillsArray = explode(',', $skills);//convert the input to array
+        foreach($skillsArray as $skill){
+            if(in_array($skill, $availableSkills)){
+                return back()->with('error','The Value  You Entered is already captured, Please Check Your Input');
+            }
+        }
+
         /* here i check if skills in the record is greater than a certain amount, if it is, It remove the previously entered value/s */
         array_unshift($availableSkills, $skills); //push new input values into the arrays comimg from database
-        if(count($availableSkills) > 8)
+        if(count($availableSkills) >11)
         {
-            $skillsArray = explode(',', $skills);//convert the input to array
 
             $totalSkill = count($skillsArray);//count the total skills both from input and the database
              array_splice($availableSkills, -$totalSkill, $totalSkill);//replace the old values from the end with new one
@@ -160,13 +176,9 @@ class ApplicantController extends Controller
         $extensions = ['docx','doc', 'txt', 'pdf'];
         $written_cover_letter = $request->written_cover_letter;
         $uploaded_cover_letter = $request->uploaded_cover_letter;
-        $path = realpath('/files/application/');
+        $path = public_path('/files/application/');
         $message  = 'Attached to this mail is  a copy of my resume for details ';
         $saveLetter = $request->save_letter;
-
-
-
-
 
         // If the Applicant chooses to upload a new resume
         if($attachment != null )
@@ -234,12 +246,11 @@ class ApplicantController extends Controller
 
     public function show($id)
     {
+        $title = "Applicant Details";
         $applicant = Applicant::where('applicant_id', $id)->firstOrFail();
         $experiences =  Experience::where('applicant_id', '=', $id)->take(3)->orderBy('start_year', 'DESC')->get() ;
         $educations =  Education::where('applicant_id', '=', $id)->orderBy('start_year', 'DESC')->get() ;
-
-        // dd($experiences);
-        return view('applicants.details', compact('applicant', 'experiences', 'educations'));
+        return view('applicants.details', compact('applicant', 'experiences', 'educations','title'));
     }
 
 
@@ -247,6 +258,7 @@ class ApplicantController extends Controller
 
     public function searchForApplicant(Request $request)
     {
+        $title='Search area';
         $request->validate([
             'search_name' => ['required']
         ]);
@@ -273,7 +285,7 @@ class ApplicantController extends Controller
         }
 
         if(count($applicants) >  0){
-            return view('applicants.all_applicants',compact('applicants'));
+            return view('applicants.all_applicants',compact('applicants','title'));
         }
         return back()->with('info', 'No result matches your search for '. $search . ' in ' .$stateName);
 
@@ -282,8 +294,9 @@ class ApplicantController extends Controller
     // Create alert preference
     public function createAlertPreference($id)
     {
+        $title ='Job A;ert Preference';
         $applicant =  Applicant::whereUser_id($id)->firstOrFail();
-        return view('applicants.create_alert', compact('applicant'));
+        return view('applicants.create_alert', compact('applicant','title'));
     }
 
     // save alert preference
@@ -341,6 +354,7 @@ class ApplicantController extends Controller
 
     public function deleteApplicant($id)
     {
+        
         $user = Auth::user();
         $applicant = Applicant::where('user_id', $user->id)->firstOrFail();
         // dd($applicant->user_id." Applicant", $user->id);
@@ -362,9 +376,3 @@ class ApplicantController extends Controller
 
 }
 
-// try {
-
-//     return response()->json("Email Sent!");
-// } catch (\Exception $e) {
-//     return response()->json($e->getMessage());
-// }

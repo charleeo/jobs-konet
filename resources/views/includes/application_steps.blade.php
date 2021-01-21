@@ -84,7 +84,7 @@
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label class="text-center">Write a cover letter (optional) <i class="fas fa-plus text-info"></i></label>
+                        <label class="text-center">Write a cover letter (optional) <i class="fas fa-plus text-dark"></i></label>
 
                         <textarea name="written_cover_letter" id="letter_input" cols="30" rows="10" class="form-control letter_input">{{$applicantInfo->cover_letter}}</textarea>
                     </div>
@@ -100,7 +100,7 @@
 
                 <div class="col-md-12">
                     <div class="form-group">
-                        <button class="btn btn-info">Send My Applicant</button>
+                        <button class="btn btn-dark">Send My Applicant</button>
                     </div>
                 </div>
 
@@ -115,7 +115,7 @@
         </p>
         @elseif(auth::user()->users_type == 'employer')
         {{-- for employers --}}
-        <p class="p-3">You are registered as an employer. before you can apply through this medium, you need to create a new record as an aplicant </p>
+        <p class="p-3">You are logged in as an employer. Before you can apply through this medium, you need to switch your account usage type. From  the sidebar, click on settings and you will see the option to switch to an applicant </p>
         @endif
         </div>
     </div>

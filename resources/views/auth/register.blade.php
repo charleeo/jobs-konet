@@ -1,6 +1,10 @@
+@php
+   $title ="Register Page"; 
+@endphp
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -53,7 +57,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="users_type" class="col-md-4 col-form-label text-md-right">{{ __('Usage Category') }}</label>
+                            <label for="users_type" class="col-md-4 col-form-label text-md-right"><small>{{ _('NOTE: You can always switch for any option when you have registered')}}</small> </label>
 
                             <div class="col-md-6">
                                 @php
@@ -99,9 +103,13 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-info">
                                     {{ __('Register') }}
                                 </button>
+
+                                <a href="/login" class="btn btn-secondary">
+                                    {{ __('Login') }}
+                                </a>
                             </div>
                         </div>
                     </form>

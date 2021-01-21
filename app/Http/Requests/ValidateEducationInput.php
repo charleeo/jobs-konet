@@ -23,6 +23,7 @@ class ValidateEducationInput extends FormRequest
      */
     public function rules()
     {
+        
         return [
             'institution' => ['required','string', 'max:225'],
             'qualification' => ['required','string', 'max:225'],

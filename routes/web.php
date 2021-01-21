@@ -1,15 +1,13 @@
 <?php
+
+// use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/', 'ApplicantController@showApplicantOnHomePage');
+Route::get('/', 'HomeController@index');
 
 Auth::routes(['verify'=>true]);
 
-Route::get('/profile', 'HomeController@index')->name('home');
+Route::get('/profile', 'HomeController@showProfilePage')->name('home');
 Route::get('/profile/edit/{id}', 'HomeController@editProfile')->name('users.edit-profile');
 Route::PATCH('/profile/update/{id}', 'HomeController@updateProfile')->name('users.update-profile');
 
@@ -31,12 +29,12 @@ Route::get('/all-vacancies/{id}', 'EmployerController@EmployerJobsLIstings')->na
 Route::get('/delete/{id}', 'EmployerController@destroy')->name('employer.delete-vacancy');
 });
 
+
 // Vacancies
 Route::get('vacancies/{id}/{category_id}/{title}', 'EmployerController@show')->name('vacancy.details');
 
 // Employers age
 Route::get('vacancies/{id}/{title}', 'EmployerController@show')->name('vacancy-employer.details');
-Route::get('/', 'EmployerController@index');
 
 
 // Admin route
@@ -46,6 +44,10 @@ Route::any('/users/{type}/{name}', 'HomeController@userType')->name('dashboard')
 Route::get('/users/change-password', 'ChangePasswordController@changePassword')->name('users.change.passwrod');
 
 Route::PATCH('/users/updatepassword', 'ChangePasswordController@updatePassword')->name('users.update.passwrod');
+
+Route::get('/users/switch-usage', 'ProfileSettingController@switchUsage')->name('users.switch.usage');
+
+Route::PATCH('/users/switch-user-type', 'ProfileSettingController@saveSwitchUsage');
 
 Route::prefix('admin')->group(function(){
 
@@ -85,7 +87,11 @@ Route::prefix('applicants')->group(function(){
 
     Route::PATCH('/updating-experience/{id}/{applicant_id}/', 'ExperienceController@updateExperience')->name('applicant.experience-update');
 
+    Route::get('/detail-experience/{experience_id}/{applicant_id}', 'ExperienceController@detailExperience')->name('details.experience');
+     
+    Route::get('/delete-experience/{experience_id}/{applicant_id}', 'ExperienceController@deleteExperience')->name('delete.experience');
 
+    
     Route::get('/creating-education/{id}/{user}/education', 'EducationController@createApplicantEducation')->name('applicant.education-create');
 
     Route::get('/editing-education/{id}/{user}/education', 'EducationController@editEducation')->name('applicant.education-edit');

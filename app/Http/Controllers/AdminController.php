@@ -23,6 +23,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin');
+        $title = "Admin's Page";
+        return view('admin',compact('title'));
     }
 }

@@ -1,5 +1,7 @@
+@php
+    $title ="Change passowrd";
+@endphp
 @extends('layouts.app')
-
 
 @section('content')
 <div class="container">
@@ -7,7 +9,7 @@
         <div class="col-md-9">
             <div class="card">
                 <div class="card-header ">
-                    <div class="col-md-6 text-center text-success">Update  Password</div>
+                    <div class="col-md-6 text-center text-dark">Update  Password</div>
                 </div>
 
                 <div class="card-body shadow-lg border border-dark">
@@ -44,7 +46,7 @@
                         <div class="row justify-content-center">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <button class="btn btn-success" >Save Changes</button>
+                                    <button class="btn btn-dark" >Save Changes</button>
                                 </div>
                             </div>
                         </div>

@@ -36,7 +36,7 @@ class AdminForgotPasswordController extends Controller
     }
 
     public function showLinkRequestForm()
-    {
-        return view('auth.passwords.email-admin');
+    {    $title = "AdminForgot Password";
+        return view('auth.passwords.email-admin',compact('title'));
     }
 }

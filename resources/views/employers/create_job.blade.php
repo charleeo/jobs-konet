@@ -11,7 +11,7 @@
                 <div class="card-header ">
                     <div class="row">
 
-                        <div class="col-md-6 text-center text-success">Vacancy {{ (Request::is('vacancy/edit/*'))?'Update' : 'Creation' }} Form</div><hr>
+                        <div class="col-md-6 text-center text-dark">Vacancy {{ (Request::is('vacancy/edit/*'))?'Update' : 'Creation' }} Form</div><hr>
                         <div class="col-md-6 text-center">Note: All fields with <span class="text-danger">*</span> are required</div>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                                 <div class="form-group">
                                     <label for="summary">Job Summary <span class="text-danger text-lg">*</span> </label>
 
-                                    <textarea name="summary" id="" placeholder="summarise the job functios here"  class="form-control" cols="30" rows="10">{{ old('summary', (isset($vacancy->summary))? $vacancy->summary : '') }}</textarea>
+                                    <textarea name="summary" id="" placeholder="summarise the job functios here"  class="form-control editor" cols="30" rows="10">{{ old('summary', (isset($vacancy->summary))? $vacancy->summary : '') }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -124,7 +124,7 @@
                             <div class="col-md">
                                 <div class="form-group">
                                     <label for="description">Job Description <span class="text-danger text-lg">*</span> </label>
-                                    <textarea name="description" id="" cols="30" rows="5" class="form-control"
+                                    <textarea name="description" id="" cols="30" rows="5" class="form-control editor2"
                                     placeholder="specify what the applicants is expected to do"
                                     >{{ old('description', (isset($vacancy->description))? $vacancy->description : '') }}</textarea>
                                 </div>
@@ -134,7 +134,7 @@
                             <div class="col-md">
                                 <div class="form-group">
                                     <label for="requirements">Education And Experience Requirements <span class="text-danger text-lg">*</span> </label>
-                                    <textarea name="requirements" id="" cols="30" rows="5" class="form-control"  placeholder="specify the prerequisite skills for this job">{{ old('requirements', (isset($vacancy->requirements))? $vacancy->requirements : '') }}</textarea>
+                                    <textarea name="requirements" id="" cols="30" rows="5" class="form-control editor3"  placeholder="specify the prerequisite skills for this job">{{ old('requirements', (isset($vacancy->requirements))? $vacancy->requirements : '') }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -143,7 +143,7 @@
                             <div class="col-md">
                                 <div class="form-group">
                                     <label for="working_hours">Working Hours And Benefits <span class="text-danger text-lg">*</span> </label>
-                                    <textarea cols="30"rows='5'  name="working_hours" class="form-control"> {{ old('working_hours', (isset($vacancy->working_hours))? $vacancy->working_hours : '') }}
+                                    <textarea cols="30"rows='5'  name="working_hours" class="form-control editor4"> {{ old('working_hours', (isset($vacancy->working_hours))? $vacancy->working_hours : '') }}
                                         </textarea>
                                 </div>
                             </div>
@@ -154,7 +154,7 @@
                             <div class="col-md">
                                 <div class="form-group">
                                     <label for="skills_and_qualifications">Skills And Qualifications Requirements <span class="text-danger text-lg">*</span> </label>
-                                    <textarea name="skills_and_qualifications" id="" cols="10" rows="5" class="form-control"  placeholder="specify the prerequisite skills for this job">{{ old('skills_and_qualifications', (isset($vacancy->skills_and_qualifications))? $vacancy->skills_and_qualifications : '') }}</textarea>
+                                    <textarea name="skills_and_qualifications" id="" cols="10" rows="5" class="form-control editor5"  placeholder="specify the prerequisite skills for this job">{{ old('skills_and_qualifications', (isset($vacancy->skills_and_qualifications))? $vacancy->skills_and_qualifications : '') }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -215,7 +215,7 @@
                         <div class="row justify-content-center">
                             <div class="col-md-6 mt-4">
                                 <div class="form-group">
-                                    <button class="form-control btn btn-success"> {{ (Request::is('vacancy/edit/*'))?'Update' : 'Post' }} Vacancy</button>
+                                    <button class="form-control btn btn-default"> {{ (Request::is('vacancy/edit/*'))?'Update' : 'Post' }} Vacancy</button>
                                 </div>
                             </div>
                         </div>

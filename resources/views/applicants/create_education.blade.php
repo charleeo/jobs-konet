@@ -8,13 +8,13 @@
     <div class="row justify-content-center">
     <div class="col-md">
         <div class="card">
-        <div class="card-header">{{Auth::user()->name}} Profile Page</div>
+        {{-- <div class="card-header">{{Auth::user()->name}} Profile Page</div> --}}
         <div class="card">
             <div class="card-header" id="headingThree">
                 <div class="row justify-content-center">
                 <div class="col-md-6 offset-md-3">
                     <h5 class="mb-0">
-                        <button class="btn btn-info ">
+                        <button class="btn btn-dark ">
                         Add Education Information
                         </button>
                     </h5>
@@ -141,7 +141,7 @@
                     <div class="row mt-4">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <textarea name="brief_description" placeholder="brief description" class="form-control" id="" cols="30" rows="6" >{{ old('brief_description', (isset($education->brief_description))? $education->brief_description: '') }}</textarea>
+                                <textarea name="brief_description" placeholder="brief description" class="form-control editor" id="" cols="30" rows="6" >{{ old('brief_description', (isset($education->brief_description))? $education->brief_description: '') }}</textarea>
                                 <label for="brief_description">A Brief Description (optional)</label>
                             </div>
                         </div>
@@ -152,7 +152,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <button class="btn btn-info form-control " >Save</button>
+                                <button class="btn btn-dark form-control " >Save</button>
                             </div>
                         </div>
                     </div>

@@ -1,10 +1,10 @@
-<div class="card">
-        <div class="card-header" id="view-personal-data-details">
+<div class="card p-3 border-0">
+        <div class="card-header bg-white" id="view-personal-data-details">
             <div class="row justify-content-center">
-                <div class="col-md-6 offset-md-3">
+                <div class="col-md-6 offset-md-3 d-flex justify-content-center">
                     <h5 class="mb-0">
                         <button class="btn btn-info collapsed" data-toggle="collapse" data-target="#view-personal-data" aria-expanded="false" aria-controls="view-personal-data">
-                        View Profile Information
+                      <i class="fa fa-eye fa-2x"></i>  View Profile Information
                         </button>
                     </h5>
                 </div>
@@ -38,12 +38,12 @@
                     </div>
                     @endif
                 </div>
-                <hr>
+                
                 <div class="row justify-content-center">
 
                     <div class="col-md-6">
                         <div class="card">
-                            <div class="card-body shadow-lg">
+                            <div class="card-body shadow">
                                 <h4 class="text-center">Skills</h4> <hr/>
                                 <ul class=" pl-4" id="skills">
                                     @foreach (explode(',', $oldApplicantRecord->skills) as $skill)

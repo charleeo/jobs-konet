@@ -13,13 +13,13 @@ class ChangePasswordController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+       $this->middleware('auth');
     }
 
     public function changePassword()
     {
-
-        return view('auth.changepassword');
+        $title = "Changer Password";
+        return view('auth.changepassword',compact('title'));
     }
 
 

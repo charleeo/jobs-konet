@@ -22,23 +22,15 @@ class EmployerController extends Controller
         $this->middleware('auth')->except(['index', 'show', 'allVacancies', 'searchForVacancy','reachOut']);
     }
 
-    // Return some of the available vacancies by limiting the number per query to 4
-    public function index()
-    {
-        $vacancies = Employer::where('clossing_date', '>=', date('Y-m-d'))->inRandomOrder()->take(4)->get();
-        $applicantsHomeView = Applicant::where('skills', '!=', null)->take(4)->inRandomOrder()->get();
-
-        return view('welcome',compact('vacancies', 'applicantsHomeView'));
-    }
+  
 
     // Return every vacancy that is not yet expired
     public function allVacancies()
-    {
-
-
-            $vacancies = Employer::where('clossing_date', '>=', date('Y-m-d'))->get();
-            return view('vacancies.all_vacancies',compact('vacancies'));
-        }
+    {  
+        $title = " Vacancies";
+        $vacancies = Employer::where('clossing_date', '>=', date('Y-m-d'))->get();
+        return view('vacancies.all_vacancies',compact('vacancies','title'));
+    }
 
         // Search for a particular vacancy
         public function searchForVacancy(Request $request)
@@ -71,7 +63,8 @@ class EmployerController extends Controller
         }
 
         if(count($vacancies) >  0){
-            return view('vacancies.searched_vacancies',compact('vacancies'));
+            $title = "Searched result";
+            return view('vacancies.searched_vacancies',compact('vacancies','title'));
         }
         return back()->with('info', 'No result matches your search for '. $search . ' in ' .$stateName);
 
@@ -83,8 +76,8 @@ class EmployerController extends Controller
         $user = Auth::user();
         if($user->users_type == 'employer')
         {
-
-            return view('employers.create_job', compact('action'));
+            $title = $user->name." vacancy creation";
+            return view('employers.create_job', compact('action', 'title'));
         }
         else{
             return back()->with('error', 'Access denied');
@@ -146,16 +139,15 @@ class EmployerController extends Controller
      */
     public function show($id, $id2, Request $request)
     {
-
         $similarJobs = Employer::with('category')
         ->where('category_id', $id2)
         ->where('employer_id', '!=', $id)
         ->where('clossing_date', '>=', date('Y-m-d'))
         ->take(4)->inRandomOrder()->get();
-
+        
         // This is to check
         if(Auth::check() == true){
-
+            
             $user = Auth::user()->id;
             $applicantInfo = Applicant::where('user_id', $user)->first();
             if($applicantInfo == null){
@@ -166,22 +158,25 @@ class EmployerController extends Controller
             $applicantInfo = '';
         }
         // else{$applicantInfo = '';}
-
-       $vacancy = Employer::where('employer_id','=', $id)->where('clossing_date', '>=', date('Y-m-d'))->firstOrFail();
-       return view('vacancies.vacancy_details', compact('vacancy','similarJobs', 'applicantInfo'));
+        
+        $title = " vacancies details";
+        
+        $vacancy = Employer::where('employer_id','=', $id)->where('clossing_date', '>=', date('Y-m-d'))->firstOrFail();
+        return view('vacancies.vacancy_details', compact('vacancy','similarJobs', 'applicantInfo','title'));
     }
-
-
+    
+    
     /**This function will return all the vacancies by a particular employer which are still within the dead line  date */
 
     public function EmployerJobsLIstings($id)
     {
-        $vacancies = Employer::where('user_id','=', $id)->where('clossing_date', '>=', date('Y-m-d'))->get();
         $user = User::find($id);
+        $title= "Vacancies by ".$user->name;
+        $vacancies = Employer::where('user_id','=', $id)->where('clossing_date', '>=', date('Y-m-d'))->get();
         if($user->users_type == 'employer')
         {
 
-            return view('employers.all_vacancies', compact('vacancies'));
+            return view('employers.all_vacancies', compact('vacancies','title'));
         }
         else{
             return back()->with('error', 'Access denied');
@@ -192,10 +187,10 @@ class EmployerController extends Controller
 
     public function edit($id)
     {
-
+        $title= Auth::user()->name ." edit vacancy ";
         $action = route('employer.update', ['id' => $id]);
         $vacancy = Employer::find($id);
-        return view('employers.create_job', compact('vacancy','action'));
+        return view('employers.create_job', compact('vacancy','action','title'));
     }
 
 
@@ -212,7 +207,6 @@ class EmployerController extends Controller
             'description' => ['required', 'min:20', 'string'],
             'requirements' => ['required', 'min:20', 'string'],
             'clossing_date' => ['required', 'date'],
-
         ]);
             Employer::whereEmployer_id($id)->update($request->except(['_token', '_method']));
 

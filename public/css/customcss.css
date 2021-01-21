@@ -3,7 +3,7 @@ body{
 }
 a:hover{
     text-decoration: none;
-    color: inherit;
+    color: #027a7a;
 }
 .deccided-height{
     height: 260px;
@@ -16,7 +16,10 @@ a:hover{
     border: 2px solid #646464;
 }
 .active{
-    background: #0f6b6e !important
+    color: #08b6b6 !important
+}
+.active:hover{
+    color:#aa1515 !important;
 }
 .fixed-top{
 
@@ -26,11 +29,6 @@ a:hover{
 }
 .brand-icon{margin-top: 3rem;}
 
-.nav-class{
-    background: #0f6b6e !important;
-
-
-}
 
 #skills{
     font-weight: bold;
@@ -42,7 +40,7 @@ a:hover{
             height: 290px;
         }
         h2,h1,h3, h4,h5,h6{
-            font-size: 1.2rem;
+            font-size: 1rem;
             /* color: red; */
         }
 

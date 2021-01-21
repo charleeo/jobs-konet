@@ -32,7 +32,7 @@
     </form>
 </section>
 
-<section class="pl-4 shadow-lg pt-4" id="employee">
+<section class="pl-4 bg-white pt-4" id="employee">
     @if(request()->is('applicants/applicant-search'))
         <button class="button">
             <a href="{{route('applicant.all')}}">
@@ -47,9 +47,17 @@
         <div class="align-self-center ">
             <div class="row">
                 {{-- Image and Title --}}
-                <div class="col-sm-5  shadow py-2 pb-3">
+
+                @php
+                $path = asset('images/profile_pics/default-image');
+                
+                if ($applicant->user->profile_photo !== 'noimage.png'){
+                    $path = asset('images/profile_pics');
+                }
+                @endphp
+                <div class="col-sm-5  shadow py-2 pb-3 bg-white">
                     <h6 class=" justify-content-center">
-                        <img src="{{asset('images/profile_pics/'.$applicant->user->profile_photo)}}" alt="profile image" class="rounded-circle" width="100" height="100">
+                        <img src="{{$path.'/'.$applicant->user->profile_photo}}" alt="profile image" class="rounded-circle" width="100" height="100">
                     </h6>
                     <hr>
                     <h6>{{$applicant->first_name}}
@@ -58,8 +66,8 @@
                     <h6>
                         Professional Title: {{$applicant->designation}}
                     </h6>
-                    <button class="button" >
-                    <a href="{{route('applicant.details', [$applicant->applicant_id])}}" >Detailes Here
+                    <button class="btn btn-link" >
+                    <a href="{{route('applicant.details', [$applicant->applicant_id])}}" > <i class="fa fa-eye  text-info"></i> detail
                     </a>
                     </button>
                 </div>

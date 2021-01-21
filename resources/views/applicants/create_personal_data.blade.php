@@ -1,13 +1,13 @@
-<div class="card">
-        <div class="card-header" id="headingOne">
+<div class="card p-3 border-0">
+        <div class="card-header bg-white" id="headingOne">
             <div class="row justify-content-center">
-                <div class="col-md-6 offset-md-3">
+                <div class="col-md-6 offset-md-3 d-flex justify-content-center">
                     <h5 class="mb-0">
-                        <button class="btn btn-info text-center" data-toggle="collapse" data-target="#personalData" aria-expanded="true" aria-controls="personalData">
+                        <button class="btn btn-dark text-center" data-toggle="collapse" data-target="#personalData" aria-expanded="true" aria-controls="personalData">
                         @if(empty($applicantInfo->user_id))
-                        Create  Profile Information
+                       <i class="fa fa-plus"></i> Create  Profile Information
                         @elseif(Request::is('applicants/edit*'))
-                                Edit  Profile Information
+                               <i class="fa fa-pencil fa-2x"></i> Edit  Profile Information
                         @endif
                         </button>
                     </h5>
@@ -89,20 +89,17 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="about_applicant">Yourself in brief (optional)</label>
-                                <textarea name="about_applicant" class="form-control" id="" cols="30" rows="10">{{ old('about_applicant', (isset($oldApplicantRecord->about_applicant))? $oldApplicantRecord->about_applicant : '') }}</textarea>
+                                <textarea name="about_applicant" class="form-control editor" id="" cols="30" rows="10">{{ old('about_applicant', (isset($oldApplicantRecord->about_applicant))? $oldApplicantRecord->about_applicant : '') }}</textarea>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="applicant_email">Application Email Address</label>
-                                <input type="text" name="applicant_email" class="form-control" placeholder="please enter the email addressyou wish to apply with"
+                                <input type="text"  name="applicant_email" class="form-control" placeholder="please enter the email addressyou wish to apply with"
+                                {{-- value="{{Auth::user()->email}}" --}}
                                 value="{{ old('applicant_email', (isset($oldApplicantRecord->applicant_email))? $oldApplicantRecord->applicant_email : '') }}"
                                 >
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="phone">Phone</label>
                                 <input type="text" name="phone" class="form-control" placeholder="Your phone number"
@@ -110,12 +107,12 @@
                                 >
                             </div>
                         </div>
-                        <div class="col-md-2 offset-md-2 mt-1">
-                            <label for=""></label>
-                            <div class="form-group">
-                               <button class="form-control btn btn-secondary">Save</button>
-                            </div>
+                    </div>
+                    <div class="col-md-6 offset-md-3 mt-1">
+                        <div class="form-group">
+                            <button class="form-control btn btn-secondary">Save</button>
                         </div>
+                    </div>
                     </div>
                     <input type="hidden" name='user_id'value='{{ Auth::user()->id }}'>
                 </form>

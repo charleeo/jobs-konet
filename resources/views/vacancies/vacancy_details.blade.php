@@ -14,11 +14,11 @@
     <hr>
 <div class="row justify-content-center heading">
     <div class="col-md-12">
-        <div class="card bg-info">
-            <div class="card-body shadow-lg">
+        <div class="card">
+            <div class="card-body">
                 <h2 class="card-text text-center">
                     Jobs in
-                    <strong class="text-light  ">
+                    <strong>
                             {{ $vacancy->category->category_name }}
                     </strong>
                 </h2>
@@ -29,7 +29,7 @@
 
 <div class="row  justify-content-center mb-2">
     <div class="card ">
-        <div class="card-body shadow-lg  border">
+        <div class="card-body   border">
             <div class="col-md">
                 {{-- <i class="fas fa-briefcase fa-4x text-success"></i> --}}
                 <h3 class="text-secondary">{{ $vacancy->role_title }}</h3>
@@ -44,9 +44,9 @@
 <div class="row  justify-content-center mb-2">
     <div class="col-md-9">
         <div class="card">
-            <div class="card-body shadow-lg">
+            <div class="card-body">
                 <h4 class="pl-3">Job Summary</h4>
-                <p> {{ $vacancy->summary }}  </p>
+                <p> {!! html_entity_decode($vacancy->summary) !!} </p>
                 <hr>
                 <ul>
                     <li>Experience Length: <strong>{{ $vacancy->min_experience }} </strong></li>
@@ -69,7 +69,7 @@
                 <h4>Job Description</h4>
                 <ul>
                     @foreach ($descriptions as $description)
-                    <li>{{ $description }}</li>
+                    <li>{!! html_entity_decode($description) !!}</li>
                     @endforeach
                 </ul>
             </div>
@@ -85,7 +85,7 @@
                 <h4>Skills And Qulifications</h4>
                 <ul>
                     @foreach ($skills_and_qualifications as $skills)
-                        <li> {{ $skills }} .</li>
+                        <li> {!! html_entity_decode($skills ) !!} .</li>
                     @endforeach
                 </ul>
             </div>
@@ -101,7 +101,7 @@
                 <h4> Education And Experience Requirements</h4>
                 <ul>
                     @foreach ($requirements as $required)
-                    <li>{{ $required }}</li>
+                    <li>{!! html_entity_decode($required) !!}</li>
                     @endforeach
                 </ul>
             </div>
@@ -117,7 +117,7 @@
                 <h4>Working Hours And Benefits</h4>
                 <ul>
                     @foreach ($working_hours as $hour)
-                        <li> {{ $hour }} </li>
+                        <li> {!! html_entity_decode($hour) !!} </li>
                     @endforeach
                 </ul>
             </div>
@@ -134,6 +134,6 @@
 
 {{-- Jobs in the same industry category --}}
 
-<h3 class="text-center text-info mt-4">Related Jobs</h3>
+<h3 class="text-center text-dark mt-4">Related Jobs</h3>
     @include('includes.related_jobs')
 @endsection

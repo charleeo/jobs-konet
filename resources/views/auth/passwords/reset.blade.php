@@ -1,3 +1,6 @@
+@php
+   $title = "Reset Password"; 
+@endphp
 @extends('layouts.app')
 
 @section('content')

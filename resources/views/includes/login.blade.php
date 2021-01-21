@@ -44,13 +44,16 @@
             <div class="col-md ">
                 <button type="submit" class="btn btn-info">
                     {{ __('Login') }}
-                </button>
+                </button> <br>
 
                 @if (Route::has('password.request'))
                     <a class="btn btn-link" href="{{ route('password.request') }}">
                         {{ __('Forgot Your Password?') }}
                     </a>
                 @endif
+                <span >
+                    {{('New?') }}<a href="{{('/register')}}" class="btn btn-link">{{('Register')}}</a>
+                </span>
             </div>
         </div>
     </form>

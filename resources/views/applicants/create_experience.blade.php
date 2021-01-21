@@ -14,7 +14,7 @@
                         <div class="row justify-content-center">
                             <div class="col-md-6 offset-md-3">
                                 <h5 class="mb-0">
-                                    <button class="btn btn-success collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    <button class="btn  collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                     {{ ((Request::is('applicants/editing-experience/*'))? " Edit" : " Add") }} Experience
                                     </button>
                                 </h5>
@@ -232,8 +232,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="work_description">Work Description</label>
-                                        <textarea name="work_description" placeholder="give a brief description of your experience in this role" class="form-control" id="" cols="30" rows="6"> {{ old('work_description', isset(($experienceInfo->work_description))? $experienceInfo->work_description:"")}}
-                                        </textarea>
+                                        <textarea name="work_description" placeholder="give a brief description of your experience in this role" class="form-control editor"  cols="30" rows="6"> {{ old('work_description', isset(($experienceInfo->work_description))? $experienceInfo->work_description:"")}}   </textarea>
                                     </div>
                                 </div>
                             </div>
@@ -242,12 +241,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <button type="button" class="btn btn-dark text-center form-control">Cancel</button>
+                                        <a href="{{route('applicant.experience-all',[$applicantInfo->applicant_id, $applicantInfo->user_id]) }}" type="button" class="btn btn-dark text-center form-control">{{ ((Request::is('applicants/editing-experience/*'))? " Go Back" : " Cancel") }}</a>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-success text-center form-control submit-data">Add Your Exper</button>
+                                        <button type="submit" class="btn btn-dark text-center form-control submit-data">{{ ((Request::is('applicants/editing-experience/*'))? "Update" : " Save") }}</button>
                                     </div>
                                 </div>
                             </div>

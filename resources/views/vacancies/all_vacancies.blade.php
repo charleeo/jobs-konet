@@ -23,7 +23,7 @@
         <div class="col-sm-2">
             <div class="form-group">
                 <button class="btn">
-                    <i class="fas fa-search fa-2x text-info"> search </i>
+                    <i class="fas fa-search fa-2x text-dark"> search </i>
                 </button>
             </div>
         </div>
@@ -31,21 +31,21 @@
 </form>
 
 
-<div class="row shadow-lg d-flex flex-wramp" >
+<div class="row  pl-3 d-flex flex-wramp" >
     @foreach ($vacancies as $vacancy)
     @php
         $explodedTitle = explode(' ', $vacancy->role_title) ;
         $implodedTitle = implode('-', $explodedTitle)
     @endphp
-    <div class="col-md-3 pt-3 ">
-        <div class="card  shadow-lg deccided-height  ">
-            <div class="card-body shadow-lg border border-dark">
+    <div class="col-md-3 p-3 ">
+        <div class="card   deccided-height  ">
+            <div class="card-body shadow   border-dark">
                 <a href="{{ route ('vacancy.details', [$vacancy->employer_id, $vacancy->category_id,$implodedTitle ]) }}" class="text-dark"><span class="text-info">{{ $vacancy->role_title }}</span>
                 <hr>
                 <small>
-                    <p>
-                        {{ substr($vacancy->summary,  0, 100)}}
-                    </p>
+
+                       {!! html_entity_decode(substr($vacancy->summary,  0, 100))!!}
+
                 </small>
                 </a>
                 <address class="text-info"> Location: {{$vacancy->state->state_name}} State</address>

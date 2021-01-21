@@ -12,7 +12,7 @@ class ProfileImageController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+       return $this->middleware('auth');
     }
 
     // Display the form to the users
@@ -20,7 +20,8 @@ class ProfileImageController extends Controller
     {
 
         $user = Auth::user();
-        return view('auth.upload_image', compact('user'));
+        $title = $user->name." upload profile image";
+        return view('auth.upload_image', compact('user','title'));
     }
 
     // process and store the image
@@ -29,8 +30,12 @@ class ProfileImageController extends Controller
         // if($request->file('profile_photo'))
         // {
             $request->validate([
-                'profile_photo' => ['required', 'image', 'dimensions:min_width=250,min_height=350']
+                'profile_photo' => ['required', 'image']
             ]);
+
+            // $request->validate([
+            //     'profile_photo' => ['required', 'image','dimensions:min_width=250,min_height=350']
+            // ]);
             $extensions = ['jpg', 'png', 'jpeg', 'gif'];
             $profilePhoto = $request->file('profile_photo');
             $extension = $request->profile_photo->getClientOriginalExtension();
@@ -53,9 +58,9 @@ class ProfileImageController extends Controller
             }
 
             $fileName = time().'.'.$profilePhoto->getClientOriginalExtension();
-            // Image::make($profilePhoto)->resize(200,200)->save(public_path('images/profile_pics/'.$fileName));
-        //    dd
-           ($profilePhoto->move(realpath('images/profile_pics/'), $fileName));
+            Image::make($profilePhoto)->resize(200,200)->save(public_path('images/profile_pics/'.$fileName));
+
+        //    ($profilePhoto->move(realpath('images/profile_pics/'), $fileName));
             $user->profile_photo = $fileName;
 
             $user->save();

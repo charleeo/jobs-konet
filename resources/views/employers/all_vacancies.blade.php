@@ -7,18 +7,17 @@
             <div class="panel">
                 {{-- @component('components.who')   @endcomponent --}}
 
-
             </div>
         </div>
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center p-5">
         <div class="col-md">
             @if(count($vacancies) > 0)
             <table class="table table-striped">
                 <thead>
                     <th>S\N</th>
                     <th>Title</th>
-                    <th>Expiration Date</th>
+                    <th>Expiration  Date</th>
                     <th>Details</th>
                     <th class="text-info"><i class="fas fa-eraser"></i>  Edit</th>
                     <th class="text-danger"> <i class="fas fa-trash"></i> Delete</th>
@@ -51,7 +50,7 @@
                         @endforeach
                 </tbody>
             </table>
-            @else <p class="text-center text-info">
+            @else <p class="text-center text-dark">
                 You have no active vacancy
             </p>
             @endif

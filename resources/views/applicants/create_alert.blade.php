@@ -8,7 +8,7 @@
     <div class="row justify-content-center">
     <div class="col-md">
         <div class="card">
-        <div class="card-header text-info text-center"> <h3>Create Alert Preference</h3></div>
+        <div class="card-header text-dark text-center"> <h3>Create Alert Preference</h3></div>
             <div class="card-body">
                 <form action="{{ route('save.alert', $applicant->user_id) }}" method="POST">
                     @csrf
@@ -27,7 +27,7 @@
                         <div class="col-md-3 pt-1">
                             <div class="form-group">
                                 <label for="submit"></label>
-                                <button class="btn btn-info form-control " >Save</button>
+                                <button class="btn btn-dark form-control " >Save</button>
                             </div>
                         </div>
                     </div>

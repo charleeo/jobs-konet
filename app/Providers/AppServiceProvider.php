@@ -6,6 +6,7 @@ use App\Applicant;
 use App\Category;
 use App\Experience;
 use App\State;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\View;
@@ -45,8 +46,9 @@ class AppServiceProvider extends ServiceProvider
             if(Auth::check()){
             $view->with('applicantInfo', Applicant::where('user_id', '=',  Auth::user()->id)->first());
 
-        }
-        if(isset(Auth::user()->profile_photo) && Auth::user()->profile_photo !== 'no_image.png')
+            }
+    
+        if(isset(Auth::user()->profile_photo) && Auth::user()->profile_photo !== 'noimage.png')
         {
             $view->with('profilePhoto', 'images/profile_pics/'.Auth::user()->profile_photo);
 

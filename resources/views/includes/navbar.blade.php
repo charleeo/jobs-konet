@@ -1,24 +1,38 @@
-<nav class="navbar navbar-expand-md navbar-light  nav-class  pb-3  shadow-lg ">
+@php
+if(Auth::check()){
+
+    $skills = checkForApplicantSkills(Auth::user()->id) ;
+}
+@endphp
+<div class="sticky">
+
+<nav class="navbar navbar-expand-md navbar-light  nav-class  pb-3 ">
 <a class="navbar-brand text-light" href="{{ url('/') }}">
-{{ config('app.name', 'MultiAuth') }}
+  
+       <b class="app-name"> {{ config('app.name', 'Job Link') }}</b>
 </a>
+
+@if(Auth::user() && Auth::user()->users_type ==='applicant' && $skills['skills'] ==null)
+<marquee behavior="scroll" direction="left" class="text-warning">
+    NOTE: <b>
+        For You to listed with other applicants on the applicants page as well as on the front-page, you should add skills to your profile. To do that, click on "Add Skills" Tab from the sidebar 
+    </b>
+</marquee>
+@endif
 
 <button class="navbar-toggler bg-light" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
 <span class="navbar-toggler-icon"></span>
 </button>
 
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-<!-- Left Side Of Navbar -->
-<ul class="navbar-nav mr-auto">
 
-</ul>
-
-<!-- Right Side Of Navbar -->
 <ul class="navbar-nav ml-auto">
             <!-- Authentication Links -->
             @guest
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    <a class="nav-link text-light" href="{{ route('login') }}">{{ __('Login') }}
+                        <i class="fas fa-sign-in-alt text-info"></i>
+                    </a>
                 </li>
                 @if (Route::has('register'))
                     <li class="nav-item">
@@ -53,18 +67,15 @@
                 @php
                     $firstName = explode(' ', Auth::user()->name);
                     @endphp
-
-                {{-- <li class="nav-item" >
-                    <a href="{{ route('dashboard', ['type'=> Auth::user()->users_type, 'name'=>$firstName[0]])}}" class="nav-link text-light">Your DashBoard</a>
-                </li> --}}
                 @endcan
                 @endguest
                 </ul>
                 @if(Auth::user())
 
                 <small id="side-bar-toggler">
-                        <button class="btn btn-sm btn-info text-light" id="menu-toggle">open side menu</button>
+                        <button class="btn btn-sm btn-info text-light" id="menu-toggle"><i class="fa fa-bars fa-2x"></i></button>
                 </small>
                 @endif
             </div>
         </nav>
+    </div>

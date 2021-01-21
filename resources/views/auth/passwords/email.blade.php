@@ -1,3 +1,6 @@
+@php
+  $title ="Send password reset-email"  
+@endphp
 @extends('layouts.app')
 
 @section('content')

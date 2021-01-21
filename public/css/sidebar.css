@@ -49,13 +49,16 @@ body {
 }
 
 .my-sidebar-color{
-    background: #1d1818;
-    color:#ffff;
+    color:#ffffff;
     font-size: 1rem;
-    font-family: 'Times New Roman', Times, serif;
-    border-bottom: 3px solid #e8f1ec;
+    /* font-family: 'Times New Roman', Times, serif; */
+    /* border-bottom: 3px solid #e8f1ec; */
+    padding: 1rem 0.3rem;
+    font-style:normal;
+    border-bottom: 1px solid #ffffff;
+    font-weight: 400;
 }
 #sidebar-wrapper{
-    background: #110b0b !important;
-    color: #ffffff;
+    background: #2e0126 !important;
+
 }
