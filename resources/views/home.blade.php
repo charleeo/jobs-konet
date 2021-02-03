@@ -19,4 +19,4 @@
 </div>
 @endsection
 
-{{-- {{ (strpos(Route::currentRouteName(), 'admin.cities') == 0) ? 'active' : '' }} --}}
+

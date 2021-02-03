@@ -3,7 +3,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-6 offset-md-3 d-flex justify-content-center">
                     <h5 class="mb-0">
-                        <button class="btn btn-info collapsed" data-toggle="collapse" data-target="#view-personal-data" aria-expanded="false" aria-controls="view-personal-data">
+                        <button class="btn btn-readmore collapsed" data-toggle="collapse" data-target="#view-personal-data" aria-expanded="false" aria-controls="view-personal-data">
                       <i class="fa fa-eye fa-2x"></i>  View Profile Information
                         </button>
                     </h5>
@@ -38,7 +38,7 @@
                     </div>
                     @endif
                 </div>
-                
+
                 <div class="row justify-content-center">
 
                     <div class="col-md-6">

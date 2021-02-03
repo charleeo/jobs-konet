@@ -1,12 +1,16 @@
-<div class="row shadow-lg d-flex flex-wramp justify-content-center" >
+
+@if (!empty($similarJobs))
+
+<h3>Related Jobs</h3> <br>
+<div class="row  justify-content-center" >
         @foreach ($similarJobs as $similarJob)
         @php
             $explodedTitle = explode(' ', $similarJob->role_title) ;
             $implodedTitle = implode('-', $explodedTitle)
         @endphp
-        <div class="col-md-4 pt-3 ">
-            <div class="card  shadow-lg deccided-height  ">
-                <div class="card-body shadow-lg text-center border border-dark">
+        <div class="col-md-6 py-3 ">
+            <div class="card ">
+                <div class="card-body shadow text-center border border-dark">
                     <a href="{{ route ('vacancy.details', [$similarJob->employer_id, $similarJob->category_id,$implodedTitle ]) }}" >
                     <span class="text-info">
                         {{ $similarJob->role_title }}
@@ -14,7 +18,7 @@
                     <hr>
                     <small>
                         <p class="text-dark">
-                            {{ substr($similarJob->summary,  0, 100)}}
+                            {!! substr($similarJob->summary,  0, 100)!!}
                         </p>
                     </small>
                     </a>
@@ -24,3 +28,4 @@
         </div>
         @endforeach
 </div>
+@endif

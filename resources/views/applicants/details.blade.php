@@ -2,7 +2,7 @@
     $path = "images/profile_pics";
    if($applicant->user->profile_photo == 'noimage.png'){
     $path = "images/profile_pics/default-image";
-   } 
+   }
 @endphp
 
 @extends('layouts.app')
@@ -30,7 +30,7 @@
                                     Professional Title: {{$applicant->designation}}
                                 </h6>
                                 @if (!empty($applicant->about_applicant))
-                                    
+
                                 <hr>
                                 <h6 class="text-center ">About {{$applicant->first_name}} {{$applicant->other_names}}</h6>
                                 <p>{{$applicant->about_applicant}}</p>
@@ -91,7 +91,7 @@
     <section class="pl-4">
         <div class="col-md">
             <div class="card">
-    
+
                 <div id="accordion">
                     @foreach($experiences as $key => $experience)
                     <div class="card">
@@ -100,7 +100,7 @@
                                     <div class="col-md-6 offset-md-3">
                                         <h5 class="mb-0">
                                             <button class="btn btn-info collapsed" data-toggle="collapse" data-target="#collapseThree-{{$experience->experience_id}}" aria-expanded="false" aria-controls="collapseThree3{{$experience->experience_id}}">
-                                                Work Experience {{$key +1}} 
+                                                Work Experience {{$key +1}}
                                             </button>
                                         </h5>
                                     </div>
@@ -130,7 +130,7 @@
                                     </div>
                                     <div class="col-md-6 border">
                                         <h4>Experience Description</h4>
-                                        <p>{{$experience->work_description}}</p>
+                                        <p>{!! html_entity_decode($experience->work_description)!!}</p>
                                     </div>
                                 </div>
                             </div>
@@ -142,7 +142,7 @@
         </div>
 
     </section>
-    
+
     <section class="pl-4 mt-3 ">
         <div class="col-md ">
             {{-- <div class="card bg-white"> --}}
@@ -154,7 +154,7 @@
                                   <div class="col-md-6 offset-md-3">
                                       <h5 class="mb-0">
                                           <button class="btn btn-info collapsed" data-toggle="collapse" data-target="#collapseThree-{{$education->education_id}}" aria-expanded="false" aria-controls="collapseThree3{{$education->education_id}}">
-                                               Education Information  {{$key+1}} 
+                                               Education Information  {{$key+1}}
                                           </button>
                                       </h5>
                                   </div>

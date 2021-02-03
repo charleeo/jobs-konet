@@ -20,14 +20,14 @@ class ExperienceController extends Controller
         $title = Auth::user()->name." experiences records";
         $applicantInfo = Applicant::where('user_id', '=',  Auth::user()->id)->firstOrFail();
         $ApplicantTotalExperiences = Experience::where('applicant_id', '=',  $id)->get();
-         
-       $pathInfo= explode('/',$_SERVER['PATH_INFO']);
 
-       
+        $pathInfo= explode('/', urldecode( parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)));
+
+
         if(Auth::user()->id != $pathInfo[4]){
             return back()->with('error','You are not allowed to view that resources');
         }
-        
+
         return view('applicants.manage_experience', compact('applicantInfo', 'ApplicantTotalExperiences','title'));
     }
 
@@ -49,7 +49,7 @@ class ExperienceController extends Controller
 
         if($request->still_working_there !=='yes')
         {
-            
+
             $request->validate([
                 'end_month' =>['required'],
                 'end_year' => ['required']
@@ -60,7 +60,7 @@ class ExperienceController extends Controller
                 return back()->withInput($request->all())->with('error', 'The year you started working in that organization must be before the year you stopped. Check the start Year field and correct the error');
             }
         }
-        
+
         $applicant_experience_data = Experience::create($request->all());
         $applicant_experience_data->save();
         return back()->with('success', 'Experience added successfully');
@@ -135,7 +135,7 @@ class ExperienceController extends Controller
          if(!$experience || empty($experience)){
              return back()->with('error','Experience record not found');
          }
-         
+
          $applicant         = Applicant::where('user_id','=',  Auth::user()->id)->firstOrFail();
 
          if($applicant->applicant_id !== $experience->applicant_id){

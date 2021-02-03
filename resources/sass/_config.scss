@@ -1,6 +1,11 @@
 $primary-color: #eeeff0;
 $secondary-color:#c6cccb;
-
+body{
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
 *{
   box-sizing: border-box;
   margin: 0;

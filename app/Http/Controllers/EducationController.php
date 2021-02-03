@@ -20,7 +20,7 @@ class EducationController extends Controller
 
     public function createApplicantEducation($id)
     {
-      
+
         $title = Auth::user()->name." Education creation page";
         $applicantInfo = Applicant::where('user_id', '=',  Auth::user()->id)->firstOrFail();
         return view('applicants.create_education', compact('applicantInfo', 'title'));
@@ -31,7 +31,7 @@ class EducationController extends Controller
     public function storeEducation(ValidateEducationInput $request)
     {
         $brief_description = $request->brief_description;
-        
+
         if(!empty($brief_description) || $brief_description !=''){
             $request->validate([
                 'brief_description' =>'min:20'
@@ -50,7 +50,7 @@ class EducationController extends Controller
                     return back()->withInput($request->all())->with('error', 'The year you started schooling must be before the year you graduated. Check the start Year field and correct the error');
                 }
             }
-            
+
             $applicant_education_data = Education::create($request->all());
             $applicant_education_data->save();
             return back()->with('success', 'Education added successfully!');
@@ -64,8 +64,8 @@ class EducationController extends Controller
         $applicantInfo = Applicant::where('user_id', '=',  Auth::user()->id)->firstOrFail();
 
         $educations = Education::where('applicant_id', '=', $id)->get();
-        $pathInfo= explode('/',$_SERVER['PATH_INFO']);
-        
+        $pathInfo= explode('/', urldecode( parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)));
+
         if(Auth::user()->id != $pathInfo[4]){
             return back()->with('error','You are not allowed to view that resources');
         }
@@ -83,9 +83,9 @@ class EducationController extends Controller
 
     public function updateEducation(ValidateEducationInput $request, $id)
     {
-       
+
        $education = Education::find($id);
-       
+
        $still_studying = $request->still_studying;
        $brief_description = $request->brief_description;
 
@@ -94,7 +94,7 @@ class EducationController extends Controller
              'brief_description' =>'min:20'
          ]);
        }
-       
+
         if($still_studying !='yes')
         {
             $request->validate([
@@ -108,7 +108,7 @@ class EducationController extends Controller
             }
 
         }
-        $education->fill([ 
+        $education->fill([
             'still_studying' =>$still_studying,
             'end_month' => $request->end_month,
             'end_year' => $request->end_year,

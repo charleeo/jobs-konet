@@ -31,13 +31,13 @@
 </form>
 
 
-<div class="row  pl-3 d-flex flex-wramp" >
+<div class="row  px-3 d-flex flex-wramp" >
     @foreach ($vacancies as $vacancy)
     @php
         $explodedTitle = explode(' ', $vacancy->role_title) ;
         $implodedTitle = implode('-', $explodedTitle)
     @endphp
-    <div class="col-md-3 p-3 ">
+    <div class="col-md-4 p-3 ">
         <div class="card   deccided-height  ">
             <div class="card-body shadow   border-dark">
                 <a href="{{ route ('vacancy.details', [$vacancy->employer_id, $vacancy->category_id,$implodedTitle ]) }}" class="text-dark"><span class="text-info">{{ $vacancy->role_title }}</span>

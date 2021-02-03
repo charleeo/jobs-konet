@@ -1,4 +1,4 @@
-<div class="card p-3 border-0">
+<div class="card  border-0">
         <div class="card-header bg-white" id="headingOne">
             <div class="row justify-content-center">
                 <div class="col-md-6 offset-md-3 d-flex justify-content-center">

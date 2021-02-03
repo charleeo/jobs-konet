@@ -19,14 +19,14 @@ class EmployerController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'show', 'allVacancies', 'searchForVacancy','reachOut']);
+        $this->middleware('auth')->except(['index', 'show', 'allVacancies', 'searchForVacancy','reachOut','getvacancyDetails']);
     }
 
-  
+
 
     // Return every vacancy that is not yet expired
     public function allVacancies()
-    {  
+    {
         $title = " Vacancies";
         $vacancies = Employer::where('clossing_date', '>=', date('Y-m-d'))->get();
         return view('vacancies.all_vacancies',compact('vacancies','title'));
@@ -73,15 +73,11 @@ class EmployerController extends Controller
     public function create()
     {
         $action = route('employer.store');
-        $user = Auth::user();
-        if($user->users_type == 'employer')
-        {
+            $user = Auth::user();
             $title = $user->name." vacancy creation";
             return view('employers.create_job', compact('action', 'title'));
-        }
-        else{
-            return back()->with('error', 'Access denied');
-        }
+
+
     }
 
 
@@ -93,7 +89,7 @@ class EmployerController extends Controller
             'summary' => ['required', 'string',   'min:15'],
             'state_id' => ['required'],
             'category_id' => ['required'],
-            'email' => ['required', 'string', 'email'],
+            'email' => ['required', 'string'],
             'phone' => ['string', 'min:9', 'max:15', 'nullable'],
             'min_experience' => ['required'],
             'description' => ['required', 'min:20', 'string'],
@@ -101,6 +97,9 @@ class EmployerController extends Controller
             'clossing_date' => ['required', 'date'],
 
         ]);
+        if(!filter_var($request->email, FILTER_VALIDATE_EMAIL) AND !filter_var($request->email, FILTER_VALIDATE_URL)){
+            return back()->with('error', 'The application email field can either be an email address or a valid URL');
+        }
         // $users = User::where('users_type', '=', 'applicant')->get();
         $users = Applicant::all();
         // dd($users);
@@ -144,10 +143,10 @@ class EmployerController extends Controller
         ->where('employer_id', '!=', $id)
         ->where('clossing_date', '>=', date('Y-m-d'))
         ->take(4)->inRandomOrder()->get();
-        
+
         // This is to check
         if(Auth::check() == true){
-            
+
             $user = Auth::user()->id;
             $applicantInfo = Applicant::where('user_id', $user)->first();
             if($applicantInfo == null){
@@ -158,14 +157,14 @@ class EmployerController extends Controller
             $applicantInfo = '';
         }
         // else{$applicantInfo = '';}
-        
+
         $title = " vacancies details";
-        
+
         $vacancy = Employer::where('employer_id','=', $id)->where('clossing_date', '>=', date('Y-m-d'))->firstOrFail();
         return view('vacancies.vacancy_details', compact('vacancy','similarJobs', 'applicantInfo','title'));
     }
-    
-    
+
+
     /**This function will return all the vacancies by a particular employer which are still within the dead line  date */
 
     public function EmployerJobsLIstings($id)
@@ -201,13 +200,17 @@ class EmployerController extends Controller
             'salary' => [ 'nullable'],
             'summary' => ['required', 'string',   'min:15'],
             'state_id' => ['required'],
-            'email' => ['required', 'string', 'email'],
+            'email' => ['required', 'string'],
             'phone' => ['string', 'min:9', 'max:15', 'nullable'],
             'min_experience' => ['required'],
             'description' => ['required', 'min:20', 'string'],
             'requirements' => ['required', 'min:20', 'string'],
             'clossing_date' => ['required', 'date'],
         ]);
+
+        if(!filter_var($request->email, FILTER_VALIDATE_EMAIL) AND !filter_var($request->email, FILTER_VALIDATE_URL)){
+            return back()->with('error', 'The application email field can either be an email address or a valid URL');
+        }
             Employer::whereEmployer_id($id)->update($request->except(['_token', '_method']));
 
         return back()->with('success','Vacancy Updated successfully!');
@@ -246,6 +249,9 @@ class EmployerController extends Controller
         Mail::to($applicant->applicant_email)->send(new ReachOutToApplicantMail($data, $email));
         return back()->with('success', 'Message Sent to '.$applicant->user->name);
     }
-
+    public function getvacancyDetails($id){
+      $vacancy = Employer::where('employer_id','=',$id)->first();
+      return view('vacancies.vacancy_details_with_ajax', compact('vacancy'));
+    }
 
 }

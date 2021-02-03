@@ -1,6 +1,6 @@
 <div class="row   justify-content-center">
 {{-- @if(Auth::check() == false) --}}
-<div class="col-md-3">
+<div class="col-md-5">
     <div class="card">
         <div class="card-body shadow-lg border">
             <p>
@@ -13,20 +13,22 @@
                     @php
                         $link = $vacancy->email;
 
-                        if(substr($link, 0,8)  =='https://' || substr($link, 0,7 ) =='http://')
-                        {
-                            $link = substr($link, strlen('https://'));
-                        }
+                        // if(substr($link, 0,6)  =='https://' || substr($link, 0,5 ) =='http://')
+                        // {
+                        //     $link = substr($link, strlen('https://'));
+                        // }
                         @endphp
-                    <a href="https://{{ $link}}" target="_blank" translate="yes">{{$link}}</a>
+                    <a href="{{ $link}}" target="_blank" translate="yes"><b> {{$link}}</b></a>
                 @endif
             </p>
             <div class="alert bg-dark  text-center">
-                <a href="{{route('all-vacancies')}}" class="text-light">Back To VACANCIES CORNER</a>
+                <a href="{{route('all-vacancies')}}" class="text-light">  Go Back</a>
             </div>
         </div>
     </div>
 </div>
+@if(strpos($vacancy->email, '@'))
+
 <div class="col-md-6">
     <div class="card">
     @if(Auth::check() == false)
@@ -43,7 +45,8 @@
         </div>
 
         {{-- For logged user whose usage type is applicant --}}
-        @elseif(Auth::user()->users_type == 'applicant' && $applicantInfo != null)
+        @elseif($applicantInfo != null)
+
         <form action="{{ route('send-my-application', [$vacancy->employer_id, Auth::user()->id])}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row p-4">
@@ -72,7 +75,8 @@
                 </div>
                 <div class="col-md-12 letter_input" id="new_resume_div">
                     <div class="form-group">
-                        <label class="text-center" id="new_resume_label">Upload a new Resume</label>
+                        <label class="text-center" id="new_resume_label">Upload a new Resume</label> &nbsp; <label class="text-center">Save this resume?</label>
+                        <input type="checkbox" name="save_resume" value="yes">
                         <input type="file" name="resume" id="new_resume" class="form-control" >
                     </div>
                 </div>
@@ -100,10 +104,9 @@
 
                 <div class="col-md-12">
                     <div class="form-group">
-                        <button class="btn btn-dark">Send My Applicant</button>
+                        <button class="btn btn-dark">Send My Application</button>
                     </div>
                 </div>
-
             </div>
         </form>
         @elseif(!$applicantInfo && auth::user()->users_type == 'applicant')
@@ -113,9 +116,9 @@
         <p class="pl-2">
             Or quickly create your profile <a href="{{route('applicant.data-create', [Auth::user()->id])}}" class="btn btn-link">here</a>
         </p>
-        @elseif(auth::user()->users_type == 'employer')
-        {{-- for employers --}}
-        <p class="p-3">You are logged in as an employer. Before you can apply through this medium, you need to switch your account usage type. From  the sidebar, click on settings and you will see the option to switch to an applicant </p>
+        @endif
+        @else
+        <p>Use the provided address to apply</p>
         @endif
         </div>
     </div>

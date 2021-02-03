@@ -1,14 +1,14 @@
-body {
-    overflow-x: hidden;
-  }
 
   #sidebar-wrapper {
     min-height: 100vh;
-    margin-left: -15rem;
     -webkit-transition: margin .25s ease-out;
     -moz-transition: margin .25s ease-out;
     -o-transition: margin .25s ease-out;
     transition: margin .25s ease-out;
+    padding-bottom: 30px;
+    background: #0c0c0c;
+    transition: all 0.7s ;
+
   }
 
   #sidebar-wrapper .sidebar-heading {
@@ -16,9 +16,7 @@ body {
     font-size: 1.2rem;
   }
 
-  #sidebar-wrapper .list-group {
-    width: 15rem;
-  }
+
 
   #page-content-wrapper {
     min-width: 100vw;
@@ -28,37 +26,16 @@ body {
     margin-left: 0;
   }
 
-  @media (min-width: 968px) {
-    #sidebar-wrapper {
-      margin-left: 0;
-    }
 
-    #page-content-wrapper {
-        min-width: 0;
-        width: 100%;
-    }
-
-    #wrapper.toggled #sidebar-wrapper {
-        margin-left: -15rem;
-    }
-}
-@media (min-width: 968px) {
-#side-bar-toggler{
-    display: none;
-}
-}
 
 .my-sidebar-color{
     color:#ffffff;
     font-size: 1rem;
-    /* font-family: 'Times New Roman', Times, serif; */
-    /* border-bottom: 3px solid #e8f1ec; */
+    font-family: 'Roboto Slab',sans-serif;
+
     padding: 1rem 0.3rem;
     font-style:normal;
     border-bottom: 1px solid #ffffff;
     font-weight: 400;
 }
-#sidebar-wrapper{
-    background: #2e0126 !important;
 
-}

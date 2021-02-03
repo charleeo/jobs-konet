@@ -1,6 +1,6 @@
 footer{
     width: 100vw;
-    background: $primary-color;
+    background: #000000;
     padding: 40px 0;
     // margin-top:3rem;
     position: static;
@@ -14,7 +14,7 @@ footer{
         justify-content: space-between;
         align-items: center;
         li{
-           color: #000000;
+           color: #ffffff;
            line-height: 76px;
            padding: 0 2rem 0 2rem;
         }

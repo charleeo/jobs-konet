@@ -1,13 +1,3 @@
-body{
-    overflow-x: hidden;
-}
-a:hover{
-    text-decoration: none;
-    color: #027a7a;
-}
-.deccided-height{
-    height: 260px;
-}
 .fa-plus{
     cursor: pointer;
 }
@@ -44,4 +34,10 @@ a:hover{
             /* color: red; */
         }
 
+}
+
+.close-side-bar{
+    font-size:2rem;
+    transform: rotate(45deg);
+    color:red
 }

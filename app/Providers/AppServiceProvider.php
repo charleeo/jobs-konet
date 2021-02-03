@@ -8,6 +8,7 @@ use App\Experience;
 use App\State;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\View;
 
@@ -32,6 +33,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
 
+        Schema::defaultStringLength(191);
+
 
         view()->composer(['*'], function(View $view){
 
@@ -47,7 +50,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('applicantInfo', Applicant::where('user_id', '=',  Auth::user()->id)->first());
 
             }
-    
+
         if(isset(Auth::user()->profile_photo) && Auth::user()->profile_photo !== 'noimage.png')
         {
             $view->with('profilePhoto', 'images/profile_pics/'.Auth::user()->profile_photo);

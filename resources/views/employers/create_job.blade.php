@@ -179,8 +179,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="email">Application Eamil Address <span class="text-danger text-lg">*</span> </label>
-                                            <input type="email" name="email" value="{{ old('email', (isset($vacancy->email))? $vacancy->email : '') }}" required class="form-control" placeholder="this where the applications will be sent to">
+                                            <label for="email">Application Eamil/URL  <span class="text-danger text-lg">*</span> </label>
+                                            <input type="text" name="email" value="{{ old('email', (isset($vacancy->email))? $vacancy->email : '') }}" required class="form-control" placeholder="this where the applications will be sent to">
                                         </div>
                                     </div>
                                 </div>

@@ -32,7 +32,7 @@ Route::get('/delete/{id}', 'EmployerController@destroy')->name('employer.delete-
 
 // Vacancies
 Route::get('vacancies/{id}/{category_id}/{title}', 'EmployerController@show')->name('vacancy.details');
-
+Route::get('/get-job-details/{id}',"EmployerController@getvacancyDetails");
 // Employers age
 Route::get('vacancies/{id}/{title}', 'EmployerController@show')->name('vacancy-employer.details');
 
@@ -88,10 +88,10 @@ Route::prefix('applicants')->group(function(){
     Route::PATCH('/updating-experience/{id}/{applicant_id}/', 'ExperienceController@updateExperience')->name('applicant.experience-update');
 
     Route::get('/detail-experience/{experience_id}/{applicant_id}', 'ExperienceController@detailExperience')->name('details.experience');
-     
+
     Route::get('/delete-experience/{experience_id}/{applicant_id}', 'ExperienceController@deleteExperience')->name('delete.experience');
 
-    
+
     Route::get('/creating-education/{id}/{user}/education', 'EducationController@createApplicantEducation')->name('applicant.education-create');
 
     Route::get('/editing-education/{id}/{user}/education', 'EducationController@editEducation')->name('applicant.education-edit');
@@ -123,6 +123,8 @@ Route::prefix('applicants')->group(function(){
     // save alert to databse
     Route::post('/{id}/save/alert-preferecne', 'ApplicantController@storeAlert')->name('save.alert');
     Route::get('delete/{id}', 'ApplicantController@deleteApplicant')->name('delete');
+
+    Route::get('applicant_details/{id}', 'ApplicantController@applicantDetails');
 });
 
 // Route for creating profile image
@@ -134,4 +136,7 @@ Route::post('auth/{id}/save-profile-photo', 'ProfileImageController@storeProfile
 // reach out to applicant by potential employer
 Route::post('employer/reach-out', 'EmployerController@reachOut')->name('reach-out');
 
-// sending application mails
+Route::get('pages/about', function(){
+    $title = "About US";
+    return view('pages.about', compact(['title'=>'title']));
+})->name('about');

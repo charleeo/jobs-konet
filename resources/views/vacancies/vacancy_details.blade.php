@@ -12,37 +12,28 @@
         $working_hours = preg_split($re, $vacancy->working_hours, -1);
     @endphp
     <hr>
-<div class="row justify-content-center heading">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-body">
+
+
+<div class="row   px-4 justify-content-center mb-2">
+    <div class="col-md-5 ">
+        <div class="card ">
+            <div class="card-body   border">
                 <h2 class="card-text text-center">
-                    Jobs in
+                    Industry:
                     <strong>
                             {{ $vacancy->category->category_name }}
                     </strong>
-                </h2>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row  justify-content-center mb-2">
-    <div class="card ">
-        <div class="card-body   border">
-            <div class="col-md">
-                {{-- <i class="fas fa-briefcase fa-4x text-success"></i> --}}
-                <h3 class="text-secondary">{{ $vacancy->role_title }}</h3>
+                </h2> <hr>
+                {{-- <i class="fas fa-briefcase fa-4x text-secondary"></i> --}}
+                <h3 class="">Title: {{ $vacancy->role_title }}</h3>
                 <p>By: <strong>{{ $vacancy->user->name }}</strong></p>
                 <p>Category:  {{ $vacancy->category->category_name }} </p>
                 <span>State: {{ $vacancy->state->state_name }}</span> | <span>{{$vacancy->engagement}}</span>
             </div>
         </div>
     </div>
-</div>
 
-<div class="row  justify-content-center mb-2">
-    <div class="col-md-9">
+    <div class="col-md-6 mb-4">
         <div class="card">
             <div class="card-body">
                 <h4 class="pl-3">Job Summary</h4>
@@ -58,12 +49,12 @@
             </div>
         </div>
     </div>
-</div>
 
 
-{{-- Description --}}
-<div class="row row  justify-content-center mb-2">
-    <div class="col-md-9">
+
+<div class="row px-4 justify-content-center mb-2">
+    <div class="col-md-5 mb-4">
+        {{-- Description --}}
         <div class="card">
             <div class="card-body  shadow-lg border">
                 <h4>Job Description</h4>
@@ -75,11 +66,9 @@
             </div>
         </div>
     </div>
-</div>
 
-    {{-- Skills Sets --}}
-<div class="row row  justify-content-center mb-2">
-    <div class="col-md-9">
+    <div class="col-md-6">
+        {{-- Skills Sets --}}
         <div class="card">
             <div class="card-body  shadow-lg border">
                 <h4>Skills And Qulifications</h4>
@@ -91,11 +80,11 @@
             </div>
         </div>
     </div>
-</div>
+{{-- </div> --}}
 
     {{-- Requirements --}}
-<div class="row   justify-content-center mb-2">
-    <div class="col-md-9">
+<div class="row px-4  justify-content-center mb-2">
+    <div class="col-md-5 mb-4">
         <div class="card">
             <div class="card-body  shadow-lg border">
                 <h4> Education And Experience Requirements</h4>
@@ -107,11 +96,9 @@
             </div>
         </div>
     </div>
-</div>
 
-{{-- Working hours and benefit --}}
-<div class="row row  justify-content-center mb-2">
-    <div class="col-md-9">
+    <div class="col-md-6">
+        {{-- Working hours and benefit --}}
         <div class="card">
             <div class="card-body  shadow-lg border">
                 <h4>Working Hours And Benefits</h4>
@@ -123,7 +110,7 @@
             </div>
         </div>
     </div>
-</div>
+{{-- </div> --}}
 
 
 
@@ -134,6 +121,6 @@
 
 {{-- Jobs in the same industry category --}}
 
-<h3 class="text-center text-dark mt-4">Related Jobs</h3>
+<hr>
     @include('includes.related_jobs')
 @endsection

@@ -30,7 +30,7 @@
                 </div>
                 <div class="col-md-6 border">
                     <h4>Experience Description</h4>
-                    <p>{!! html_entity_decode($experience->work_description)!!}</p>
+                    <p>{!! $experience->work_description!!}</p>
                 </div>
             </div>
             {{-- <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">

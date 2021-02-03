@@ -42,7 +42,7 @@ class ApplicantController extends Controller
         $title ='Create Applicant';
         $oldApplicantRecord = Applicant::where('applicant_id', '=', $id)->first();
         if(!empty($oldApplicantRecord)){
-            if(Auth::user()->id !== $oldApplicantRecord->user_id){
+            if(Auth::user()->id != $oldApplicantRecord->user_id){
                 return back()->with('error','You can\'t access another person\'s data, that is thefting');
             }
         }
@@ -110,6 +110,11 @@ class ApplicantController extends Controller
             ]);
 
             $path = public_path('/files/resumes/');
+
+            if(file_exists($path.$applicant->resume)){
+                unlink($path.$applicant->resume);
+            }
+
             $fileName = $name.'.'.$resume->getClientOriginalExtension();
             $resume->move($path, $fileName);
 
@@ -195,14 +200,30 @@ class ApplicantController extends Controller
 
             $name = pathinfo($attachment->getClientOriginalName(), PATHINFO_FILENAME);
             $attachment = $name.'.'.$attachment->getClientOriginalExtension();
-            $request->resume->move($path, $attachment);
-            $attachment = [$path.$attachment];
+            // If they want to save the new resume
+            if($request->save_resume =='yes'){
+                $oldResume = public_path('files/resumes/'.$applicant->resume);
+                if(file_exists($oldResume)){
+
+                    unlink($oldResume);
+                }
+                $path2 =public_path('/files/resumes/');
+                $request->resume->move($path2, $attachment);
+            //    Update the resume column toreflect the new value
+                $applicant->resume = $attachment;
+                $applicant->save();
+                $attachment = [$path2.$attachment];
+            }else{
+
+                $request->resume->move($path, $attachment);
+                $attachment = [$path.$attachment];
+            }
 
         }
-        else if($request->user_resume != null)
+        else if($request->user_resume != null AND $attachment=='')
         {
 
-            $attachment = [public_path('files/resumes/'.$applicant->resume)];
+            $attachment = public_path('files/resumes/'.$applicant->resume);
         }
         // take them back to fill the new resume field
         else{ $request->validate(['resume' => 'required']); }
@@ -239,17 +260,18 @@ class ApplicantController extends Controller
         $file = new Filesystem;
         $file->cleanDirectory($path);
 
-
-
         return back()->with('success', 'Application Submitted successfully');
     }
 
-    public function show($id)
+    public function show($id, Request $request)
     {
         $title = "Applicant Details";
         $applicant = Applicant::where('applicant_id', $id)->firstOrFail();
         $experiences =  Experience::where('applicant_id', '=', $id)->take(3)->orderBy('start_year', 'DESC')->get() ;
         $educations =  Education::where('applicant_id', '=', $id)->orderBy('start_year', 'DESC')->get() ;
+        if($request->ajax()){
+            return view('applicants.applicant-details', compact('applicant', 'experiences', 'educations'));
+        }
         return view('applicants.details', compact('applicant', 'experiences', 'educations','title'));
     }
 
@@ -354,7 +376,7 @@ class ApplicantController extends Controller
 
     public function deleteApplicant($id)
     {
-        
+
         $user = Auth::user();
         $applicant = Applicant::where('user_id', $user->id)->firstOrFail();
         // dd($applicant->user_id." Applicant", $user->id);
@@ -374,5 +396,10 @@ class ApplicantController extends Controller
         return redirect('/profile')->with('success', "Record Deleted Successfully");
     }
 
+    public function applicantDetails($id){
+        $applicant=Applicant::where('applicant_id',"=", $id)->first();
+        return view('applicants.applicant-details',compact('applicant'));
+
+    }
 }
 
