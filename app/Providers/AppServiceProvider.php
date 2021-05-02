@@ -9,6 +9,7 @@ use App\State;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\View;
 
@@ -23,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+
     }
 
     /**
@@ -63,5 +65,10 @@ class AppServiceProvider extends ServiceProvider
         }
 
         });
+
+        if(config('app.env') === 'production') {
+            URL::forceScheme('https');
+
+        }
     }
 }
