@@ -3,25 +3,15 @@
 
 <!-- Main -->
 <main>
-    <h2 class="page-heading">About Us</h2>
-    <div id="post-container">
-        <section id="blogpost">
-            <div class="card">
-          <div class="card-image">
-            <img src="./img/bg-2.jpg" alt="">
-          </div>
-          <div class="card-description">
+    <section class="jumbotron">
+        <h2 class="">About Us</h2> <hr>
+        <div class="row justify-content-center">
+          <div class="col-md-5 col-sm-10 shadow-lg p-5">
             We are a global focused set of HR with a vission and commitment to bring jobs closer to every individual while also ensuring that hiring managers get the best hands for their projects and product!
           </div>
         </div>
-
     </section>
-    <!-- Aside -->
-    <aside id="sidebar">
-        <h3>Sidebar Heading</h3>
-        <p>Type here</p>
-    </aside>
-</div>
+
 </body>
 </html>
 @endsection

@@ -2,7 +2,6 @@
     <ul>
       <li><a href="/">Home</a></li>
       <li><a href="{{route('about')}}">About</a></li>
-      {{-- <li><a href="bloglist.html">Blog</a></li> --}}
       @if(Auth::user())
     <li><a href="/profile">Dashbaord</a></li>
       <li>

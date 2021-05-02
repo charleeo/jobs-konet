@@ -6,7 +6,7 @@
   <header>
     <div id="banner">
       <div id="header">
-          <h1>FINGER TIP CONNECT HERER</h1>
+          <h1>JOBS KONET</h1>
           <h3>Have Access To Jobs And Top Tallents</h3>
       </div>
       <section id="about-u">
