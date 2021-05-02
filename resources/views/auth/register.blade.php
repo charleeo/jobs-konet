@@ -1,5 +1,5 @@
 @php
-   $title ="Register Page"; 
+   $title ="Register Page";
 @endphp
 @extends('layouts.app')
 
@@ -9,7 +9,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">{{ 'Register' }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
@@ -57,7 +57,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="users_type" class="col-md-4 col-form-label text-md-right"><small>{{ _('NOTE: You can always switch for any option when you have registered')}}</small> </label>
+                            <label for="users_type" class="col-md-4 col-form-label text-md-right"><small>{{ ('NOTE: You can always switch for any option when you have registered')}}</small> </label>
 
                             <div class="col-md-6">
                                 @php
@@ -80,7 +80,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ ('Password') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
@@ -94,7 +94,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{('Confirm Password') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
@@ -104,11 +104,11 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-info">
-                                    {{ __('Register') }}
+                                    {{ ('Register') }}
                                 </button>
 
                                 <a href="/login" class="btn btn-secondary">
-                                    {{ __('Login') }}
+                                    {{ ('Login') }}
                                 </a>
                             </div>
                         </div>
