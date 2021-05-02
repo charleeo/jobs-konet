@@ -120,7 +120,7 @@
                             </div>
                         </div>
                         {{-- Row end --}}
-                        <div class="row justify-content-center">
+                        {{-- <div class="row justify-content-center">
                             <div class="col-md">
                                 <div class="form-group">
                                     <label for="description">Job Description <span class="text-danger text-lg">*</span> </label>
@@ -129,15 +129,15 @@
                                     >{{ old('description', (isset($vacancy->description))? $vacancy->description : '') }}</textarea>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row justify-conteny-center">
+                        </div> --}}
+                        {{-- <div class="row justify-conteny-center">
                             <div class="col-md">
                                 <div class="form-group">
                                     <label for="requirements">Education And Experience Requirements <span class="text-danger text-lg">*</span> </label>
                                     <textarea name="requirements" id="" cols="30" rows="5" class="form-control editor3"  placeholder="specify the prerequisite skills for this job">{{ old('requirements', (isset($vacancy->requirements))? $vacancy->requirements : '') }}</textarea>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         {{-- Row end --}}
                         <div class="row justify-content-center">
                             <div class="col-md">

@@ -1,6 +1,6 @@
-<div class="row   justify-content-center">
+<div class="row   justify-content-center" style="margin-top: 20px !important">
 {{-- @if(Auth::check() == false) --}}
-<div class="col-md-5">
+<div class="col-md-5 ">
     <div class="card">
         <div class="card-body shadow-lg border">
             <p>

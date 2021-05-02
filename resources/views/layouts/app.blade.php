@@ -9,8 +9,9 @@
 
     {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
 
-        <title>{{ config('app.name', 'Laravel') }}:{{$title}} </title>
+        <title>{{ config('app.name', 'FINGER TIP KONNECT') }}:{{$title}} </title>
     <!-- Fonts -->
+    <link rel="icon" href="{{asset('images/icon/favicon.png')}}" type="image/gif">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300&display=swap" rel="stylesheet">
@@ -21,7 +22,7 @@
 
     <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet">
     <link href="{{ asset('css/customcss.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/main/app.css') }}" rel="stylesheet">
 </head>
 <body>
 
@@ -47,48 +48,10 @@
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}" defer></script>
   <script src="{{ asset('js/custom.js') }}"></script>
-    <script src="{{asset('js/main.js')}}"></script>
   <script src="https://kit.fontawesome.com/b4ec2ce099.js"></script>
   <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-    try {
-
-        ClassicEditor
-            .create( document.querySelector( '.editor ' ) )
-            .catch( error => {
-                console.error( error );
-            } );
-
-            ClassicEditor
-            .create( document.querySelector( '.editor2 ' ) )
-            .catch( error => {
-                console.error( error );
-            } );
-
-            ClassicEditor
-            .create( document.querySelector( '.editor3' ) )
-            .catch( error => {
-                console.error( error );
-            } );
-
-            ClassicEditor
-            .create( document.querySelector( '.editor4' ) )
-            .catch( error => {
-                console.error( error );
-            } );
-
-            ClassicEditor
-            .create( document.querySelector( '.editor5' ) )
-            .catch( error => {
-                console.error( error );
-            } );
-        AOS.init();
-    } catch (error) {
-      console.log(error)
-    }
-
-</script>
+  <script src="{{asset('js/main.js')}}"></script>
 
 </body>
 

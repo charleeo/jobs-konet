@@ -16,8 +16,8 @@
 
 <div class="row   px-4 justify-content-center mb-2">
     <div class="col-md-5 ">
-        <div class="card ">
-            <div class="card-body   border">
+        <div class="card shadow">
+            <div class="card-body   border-0">
                 <h2 class="card-text text-center">
                     Industry:
                     <strong>
@@ -52,22 +52,9 @@
 
 
 
-<div class="row px-4 justify-content-center mb-2">
-    <div class="col-md-5 mb-4">
-        {{-- Description --}}
-        <div class="card">
-            <div class="card-body  shadow-lg border">
-                <h4>Job Description</h4>
-                <ul>
-                    @foreach ($descriptions as $description)
-                    <li>{!! html_entity_decode($description) !!}</li>
-                    @endforeach
-                </ul>
-            </div>
-        </div>
-    </div>
+<div class="row px-4 justify-content-end">
 
-    <div class="col-md-6">
+    <div class="col-md-5 mb-5 px-5">
         {{-- Skills Sets --}}
         <div class="card">
             <div class="card-body  shadow-lg border">

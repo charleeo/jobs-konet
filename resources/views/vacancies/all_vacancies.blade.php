@@ -4,13 +4,13 @@
 {{-- search form --}}
 <form action="{{route('search-vacancies')}}" method="POST">
     @csrf
-    <div class="row justify-content-center">
-        <div class="col-sm-6">
+    <div class="row justify-content-center px-5">
+        <div class="col-md-4 col-sm-6 ">
             <div class="form-group">
                 <input type="text" name="search_name" class="form-control" placeholder="type here to search by your prefrence">
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-md-4 col-sm-6">
             <div class="form-group">
                 <select name="state_id"  class="form-control">
                     <option value="">please choose an option</option>
@@ -31,7 +31,7 @@
 </form>
 
 
-<div class="row  px-3 d-flex flex-wramp" >
+<div class="row  px-3 d-flex flex-wramp px-5" >
     @foreach ($vacancies as $vacancy)
     @php
         $explodedTitle = explode(' ', $vacancy->role_title) ;

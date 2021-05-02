@@ -1,7 +1,5 @@
-
   h1{
     padding: 8px;
-    // background: #000000;
     margin: 0 0 40px 0;
     font-size: 64px;
     font-family: "Roboto Slab",serif;
@@ -19,18 +17,19 @@
 
   #banner{
       #header{
-    height: 60vh;
+    height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background: linear-gradient(to bottom, $primary-color,#f8f5f5);
+    // background: url('./images/general_images/fingertip.png');
+    background: linear-gradient(to left, #202125, #271a24);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
-    background-blend-mode: overlay;
-    color: #000000;
+    // background-blend-mode: overlay;
+    color: #f5edf1;
     margin-top: -8px;
     h1,h3{
         font-weight: 900;
@@ -74,7 +73,7 @@
   /*Home Section*/
   #home-section{
       height: 80vh;
-      background: url('images/general_images/we.jpg');
+      background: rgb(247, 243, 243) url('images/general_images/we.jpg');
       background-position: bottom;
       background-repeat: no-repeat;
       background-blend-mode: overlay;
@@ -130,7 +129,7 @@
   /*Navigation*/
   nav{
     height: 72px;
-    background: #000000;
+    background: #0e0c0c;
     width: 100%;
     margin: 0;
     position: fixed;
@@ -165,9 +164,9 @@
       align-items: center;
       color: #ffffff;
       transition: 0.4s;
-      font-size: 3rem;
+      font-size: 2rem;
       &:hover{
-        background: #000000;
+        background: #333333;
       }
     }
   }
@@ -543,7 +542,7 @@
 #jobs_and_tallents{
     min-height: 50vh;
     display: flex;
-    background: rgba(30, 34, 36, 0.9) url('images/general_images/we.jpg');
+    background: url('images/general_images/we.jpg'), rgba(36, 68, 83, 0.9) ;
     background-size: cover;
     background-position: center;
     background-repeat: repeat-x;
@@ -551,29 +550,69 @@
     flex-direction: column;
     text-transform: uppercase;
     padding: 90px;
-    // h1{
-    //     background: #181517;
-    //     padding: 25px;
-    //     justify-content: center;
-    //     color: #ffffff;
-    //     text-align: center;
-    //     width: 650px;
-    //     position: relative;
-    //     top: 0;
-    //     // left: 50%;
-    // }
+
 }
 
 .testimonies{
     color: #000000;
     font-weight: 900;
     font-size: 1.6rem;
-    font-family: "Roboto Slab",sans-serif;
+    font-family: "Roboto Condensed",sans-serif;
 }
 
 .show-more{
     display:none;
 }
+
+.menu-btn{
+    position: absolute;
+    z-index: 1;
+    right: 1.9rem;
+    top: 1rem;
+    height: 20px;
+    width: 8px;
+    cursor: pointer;
+    visibility: hidden;
+    @include transition-ease;
+    &_burger{
+      position: absolute;
+      right: 0;
+      top: 0.5rem;
+      width: 28px;
+      height: 3px;
+      background: #f8f5f5;
+      @include transition-ease;
+      &::before{
+        content: '';
+        position: absolute;
+        top: -8px;
+        width: 28px;
+        height: 3px;
+        background: #ffffff;
+        @include transition-ease;
+      }
+      &::after{
+        content: '';
+        position: absolute;
+        top: 8px;
+        width: 20px;
+        height: 3px;
+        background: #f8f5f5;
+        @include transition-ease;
+      }
+      &.open{
+        transform: rotate(720deg);
+        background: transparent;
+        &::before{
+          transform: rotate(45deg) translate(5px, 8px)
+        }
+        &::after{
+          width: 28px;
+          transform: rotate(-45deg) translate(3px, -7px);
+        }
+      }
+    }
+  }
 
   /*Media Queries*/
   @media(max-width:900px){
@@ -690,7 +729,7 @@
     #logo-img {
         a{
 
-            font-size: 1.5rem;
+            font-size: 1rem;
         }
     }
     #home-section{
@@ -717,6 +756,12 @@
 
         }
     }
+    .testimonies{
+        font-size: 1rem;
+    }
+    .menu-btn{
+        visibility: visible;
+    }
   }
 //   @media(min-width:720px){
 //     main{
@@ -736,3 +781,9 @@
       width: 100%;
     }
   }
+
+
+
+
+
+

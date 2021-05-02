@@ -2,36 +2,12 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
-@import 'variables';
-@import 'config';
-@import 'home';
-@import 'general';
-@import 'loading';
-// @import 'footer';
+// @import './variables';
 
 // Bootstrap
 // @import '~bootstrap/scss/bootstrap';
-body{
-    background: #eeeff0;
-}
- ul{
-     list-style: none
- }
- a{
-     color: inherit;
- }
- .employees{
-    border-radius: 0 0% 85% / 4%  0% ;
-    box-shadow:  2px 4px 6px 3px #000000fb;
-    background: linear-gradient(#fffffb 80%, #ffffff 100%)
- }
- .button
- {
-    background: #4e5152;
-    color:#fffffb;
-    border-radius: 20%;
-    box-shadow: 0 3px 20px 0 #0000003b;
-    border: none;
-    outline: none;
-    padding:10px 20px;
- }
+@import './config';
+@import './home';
+@import './general';
+@import './loading';
+@import './footer';

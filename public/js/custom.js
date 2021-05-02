@@ -209,6 +209,7 @@ let textArrayIndex = 0;
 let charIndex =0;
 
  function  typeFunction() {
+     try {
      if(!cusorSpan.classList.contains('typing')){
          cusorSpan.classList.add('typing')
      }
@@ -222,7 +223,11 @@ let charIndex =0;
             cusorSpan.classList.remove('typing');
             setTimeout(eraseFunction,nextTextDelay)
         }
+
+    } catch (error) {
+
     }
+ }
  function eraseFunction(){
   if(charIndex >0){
     if(!cusorSpan.classList.contains('typing')){
@@ -249,11 +254,6 @@ function getID(){
     try {
         buttons.forEach(button => {
             button.addEventListener('click', (event) => {
-                jQuery('#jobs').addClass('jobs-details-section');
-                jQuery('#jobs-lists').removeClass('jobs-lists');
-                $("#vacancy-details").html('');
-                $("#vacancy-details").show('slow');
-                jQuery('#loader-display').addClass('loader');
                 performSimpleAjax(event.target.id);
             })
         })
@@ -271,7 +271,7 @@ function performSimpleAjax(id){
         data: {id:id},
         url: "/get-job-details/"+id,
         success:function(res){
-            if(width < 721 ){
+            // if(width < 721 ){
 
                 jQuery('#cssloader').addClass('loader')
                 $("#modal-body").html('')
@@ -280,12 +280,6 @@ function performSimpleAjax(id){
                  $("#modal-body").html(res)
                  jQuery('#cssloader').removeClass('loader')
              }, 3000);
-            }else {
-                setTimeout(() => {
-                    jQuery('#loader-display').removeClass('loader');
-                    jQuery('#vacancy-details').html(res);
-                   }, 3000);
-                }
         },
         error:function(err){
            console.log('error ' + err.responseText );
@@ -299,15 +293,6 @@ function getSkillDdetails(){
     try {
         buttons2.forEach(button => {
             button.addEventListener('click', (event) => {
-                jQuery('#skills').addClass('skills-section');
-                jQuery('#skills-lists').removeClass('skills-lists');
-                $("#skills-details").html('');
-                $("#skills-details").show('slow');
-                jQuery('#details-loader-display').addClass('loader');
-                // var oldDiv = document.querySelector('#vacancy-details');
-                // var newDiv = document.createElement('div');
-                // newDiv.setAttribute('id','vacancy-details')
-                // oldDiv.parentNode.replaceChild(newDiv,oldDiv);
                performSimpleAjax2(event.target.id);
             })
         })
@@ -326,8 +311,6 @@ function performSimpleAjax2(id){
         data: {id:id},
         url: "/applicants/applicant-details/"+id,
         success:function(res){
-            // console.log(res)
-            if(width < 721 ){
 
                 jQuery('#cssloader-applicant').addClass('loader')
                 $("#applicant-details-modal-body").html('')
@@ -336,12 +319,6 @@ function performSimpleAjax2(id){
                  $("#applicant-details-modal-body").html(res)
                  jQuery('#cssloader-applicant').removeClass('loader')
              }, 3000);
-            }else {
-                setTimeout(() => {
-                    jQuery('#details-loader-display').removeClass('loader');
-                    jQuery('#skills-details').html(res);
-                   }, 3000);
-                }
         },
         error:function(err){
            console.log('error ' + err.responseText );
@@ -353,17 +330,17 @@ $('#browse-talents').click(function(){
     $('.jobs-lists').css('display','none');
     $('#more-skills').css('opacity', 1)
     $('#more-jobs').css('opacity', 0)
+    $('#heading').html('Available Skills')
 });
 
 $('#browse-jobs').click(function(){
     $('.jobs-lists').css('display','flex');
     $('.skills-lists').css('display','none');
-    $('#more-jobs').css('opacity', 1)
-    $('#more-skills').css('opacity', 0)
+    $('#more-jobs').css('opacity', 1);
+    $('#more-skills').css('opacity', 0);
+    $('#heading').html('Available Jobs')
 })
 
 
-function showMore(){
-    alert('seen')
-}
+
 

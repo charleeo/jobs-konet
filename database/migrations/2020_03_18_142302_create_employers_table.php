@@ -24,8 +24,8 @@ class CreateEmployersTable extends Migration
             $table->string('email');
             $table->string('clossing_date')->default('Not Specified');
             $table->string('salary')->nullable(true);
-            $table->text('description');
-            $table->text('requirements');
+            // $table->text('description');
+            // $table->text('requirements');
             $table->timestamps();
         });
     }

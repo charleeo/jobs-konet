@@ -57,14 +57,14 @@
         </div>
     </div> <hr>
 
-    
+
     {{-- Description --}}
     <div class="col-md-6 card border-0 shadow">
         <div class="card-body">
-            <h4>Job Description</h4>
+            <h4>Skills And Qulifications</h4>
             <ul>
-                @foreach ($descriptions as $description)
-                <li>{!! html_entity_decode($description) !!}</li>
+                @foreach ($skills_and_qualifications as $skills)
+                    <li> {!! html_entity_decode($skills ) !!} .</li>
                 @endforeach
             </ul>
         </div>
@@ -74,7 +74,7 @@
 
 
     {{-- Skills Sets --}}
-<div class="row mb-2 px-2 ">
+{{-- <div class="row mb-2 px-2 ">
     <div class="col-md-5 mr-2 card border-0  shadow">
         <div class="card-body">
             <h4>Skills And Qulifications</h4>
@@ -84,19 +84,9 @@
                 @endforeach
             </ul>
         </div>
-    </div> <hr>
-    {{-- Requirements --}}
-    <div class="col-md-6 card border-0 shadow">
-        <div class="card-body">
-            <h4> Education And Experience Requirements</h4>
-            <ul>
-                @foreach ($requirements as $required)
-                <li>{!! html_entity_decode($required) !!}</li>
-                @endforeach
-            </ul>
-        </div>
     </div>
-</div>
+
+</div> --}}
 
 {{-- Apply button --}}
 <div class="row justify-content-center">

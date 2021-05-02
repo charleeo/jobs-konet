@@ -6,7 +6,7 @@
   <header>
     <div id="banner">
       <div id="header">
-          <h1>FINGER TIP CONNECT</h1>
+          <h1>FINGER TIP CONNECT HERER</h1>
           <h3>Have Access To Jobs And Top Tallents</h3>
       </div>
       <section id="about-u">
@@ -29,7 +29,7 @@
                 <div class="col-md-6">
 
                     <p>
-                        Everyone must be engaged and every project must be delivered
+                       We Believe That Everyone must be engaged and every  project must be delivered untime and quickly
                     </p>
                 </div>
             </div>
@@ -47,8 +47,8 @@
                     <div class="row justify-content-center">
                         {{-- <div class="col-md-4"><img src="{{asset('')}}" alt="Testifier"></div> --}}
                         <div class="col-md-6">
-                            <div class="card shadow">
-                                <div class="card-body">
+                            <div class="car ">
+                                <div class="car-body">
                                     <p class="text-dark testimonies">
                                         I am so impressed with the type of job post a see here; to are verified and updated. No expired job is advertised and every job advert is always up to standard. Keep up the good work guys
                                     </p>
@@ -61,10 +61,10 @@
                     <div class="row justify-content-center">
                         {{-- <div class="col-md-4"><img src="" alt="Testifier"></div> --}}
                         <div class="col-md-6">
-                            <div class="card shadow">
-                                <div class="card-body">
+                            <div class="car ">
+                                <div class="car-body">
                                     <p class="text-dark testimonies">
-                                      All appreciation go to the created of this platform for making such a simple but efficient solution that helps connect HR Manager to potential employees
+                                      All appreciations go to the created of this platform for making such a simple but efficient solution that helps connect HR Manager to potential employees
                                     </p>
                                 </div>
                             </div>
@@ -73,19 +73,21 @@
                 </div>
             </div>
         </div>
+
     </section>
     <hr>
     <section id="jobs_and_tallents" class="p-5">
         <div class="row justify-content-center">
             <div class="col-md-5 p-3">
-                <p class="text-dark"> <b>
+                <p class="text-white"> <b>
                     For all your job searching and hunting, we are here to take that burden off your shoulder. Simply click on browse jobs button to a list of available jobs that you can easily apply for
                 </b>
+
                 </p> <br> <hr>
                 <button class="btn-readmore" id="browse-jobs">Browse Jobs </button>
-                <a href="{{route('all-vacancies')}}" class="btn btn-dark text-light" id="more-jobs">MORE JOBS HERE</a>
+                <a href="{{route('all-vacancies')}}" class="btn btn-white text-light" id="more-jobs">MORE JOBS HERE</a>
             </div>
-            <div class="col-md-5 border-left p-3">
+            <div class="col-md-5 border-left p-3 text-light">
                 <p><b>
                   If you have ever wondered how you can have access to top skills for that your project, then, wonder no more as we have colated a lsit of very talented individuals for all your projects needs.
                 </b></p>
@@ -95,12 +97,13 @@
             </div>
         </div>
     </section>
+    <h3 class="text-center" id="heading"></h3>
    <section id="jobs" class="pl-2 pt-2">
        {{-- <div class="row"> --}}
            @if(!empty($vacancies))
 
+
         <div class="card jobs-lists" id="jobs-lists">
-            <h3 class="text-center">Available Jobs</h3>
             @foreach ($vacancies as $vacancy)
             @php
 
@@ -115,6 +118,7 @@
                 </h2>
                     <hr>
                 <h3 class="text-dark">Title: {{ $vacancy->role_title }}</h3>
+                <small class="text-center">{!!Str::substr($vacancy->summary, 0, 100) !!}</small>
                 <p>By: <strong>{{ $vacancy->user->name }}</strong></p>
                 <span>State: {{ $vacancy->state->state_name }}</span> | <span>{{$vacancy->engagement}}</span> <br>
                 <button id="{{$vacancy->employer_id}}" class=" details btn-readmore " ><i class="fas fa-eye"></i> Deatils</button>
@@ -129,20 +133,18 @@
               </div>
    </section>
 
-   <hr>
 
-   <section id="skills" class="pt-5 px-3 border-0">
+   <section id="skills" class="pt-2 px-3 border-0">
     {{-- <div class="row"> --}}
         @if(!empty($applicantsHomeView))
 
         <div class="card skills-lists" id="skills-lists">
-            <h3 class=" px-5 text-center">Available Skills</h3>
             <div class="card-body mb-3 ml-2" >
                 <div class="align-self-center">
                     <div class="row  justify-content-center" data-aos="fade-right">
                         @foreach ($applicantsHomeView as $applicant)
                         {{-- Image and Title --}}
-                        <div class="col-md-6  shadow py-2 pb-3">
+                        <div class="col-md-4  shadow py-2 pb-3">
                             <h6 class=" justify-content-center">
                                 @php
                                 $path = asset('images/profile_pics/default-image');

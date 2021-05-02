@@ -92,8 +92,8 @@ class EmployerController extends Controller
             'email' => ['required', 'string'],
             'phone' => ['string', 'min:9', 'max:15', 'nullable'],
             'min_experience' => ['required'],
-            'description' => ['required', 'min:20', 'string'],
-            'requirements' => ['required', 'min:20', 'string'],
+            // 'description' => ['required', 'min:20', 'string'],
+            // 'requirements' => ['required', 'min:20', 'string'],
             'clossing_date' => ['required', 'date'],
 
         ]);

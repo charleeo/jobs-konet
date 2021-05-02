@@ -27,8 +27,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-          // Return some of the available vacancies by limiting the number per query to 4
-        $title = "Home Page";
+
+
+        $title = " Home Page";
         $vacancies = Employer::where('clossing_date', '>=', date('Y-m-d'))->inRandomOrder()->take(4)->get();
         $applicantsHomeView = Applicant::where('skills', '!=', null)->take(4)->inRandomOrder()->get();
         return view('welcome',compact('vacancies', 'applicantsHomeView','title'));

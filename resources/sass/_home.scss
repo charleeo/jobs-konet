@@ -1,17 +1,8 @@
 .home{
     min-height: 100vh;
-    // margin-top:-8px;
-    // padding-top: 1.5rem;
     align-items: center;
     text-align: center;
-    // background:linear-gradient(to right, rgba(#0000003b, 0.5), rgba($secondary-color, 0.2));
-
-    // , url('/images/general_images/mybg2.jpg');
-    // background-size: cover;
-    // background-position: top;
-    // border-radius: 0 0 85% 85% / 30%;
-    background: #000000;
-    background-image: #0303036b;
+    background: #af6868;
     &_name{
       font-size: 7rem;
       padding-bottom: 1rem;
@@ -55,10 +46,6 @@
     color: #2e0126;
     cursor: pointer;
 }
-
-
-
-
 
   .heart {
     background-color: #000000;
@@ -232,10 +219,6 @@
   animation: heartbeat 6s infinite; // our heart has infinite heartbeat :)
 
 }
-
-
-
-
 
 
 #about-us

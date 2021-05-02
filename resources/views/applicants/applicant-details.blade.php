@@ -1,5 +1,5 @@
 <section class="pl-4 ">
-    
+
     <div class="row  d-flex flex-wramp justify-content-center bg-white " >
     <div class="col-md-12 mb-3  ml-2" >
         <div class="align-self-center ">
@@ -75,7 +75,7 @@
                             <div class="col-md-6 offset-md-3">
                                 <h5 class="mb-0">
                                     <button class="btn btn-readmore collapsed" data-toggle="collapse" data-target="#collapseThree-{{$experience->experience_id}}" aria-expanded="false" aria-controls="collapseThree3{{$experience->experience_id}}">
-                                        Work Experience {{$key +1}}
+                                         Experience {{$key +1}}
                                     </button>
                                 </h5>
                             </div>
@@ -129,7 +129,7 @@
                           <div class="col-md-6 offset-md-3">
                               <h5 class="mb-0">
                                   <button class="btn btn-readmore collapsed" data-toggle="collapse" data-target="#collapseThree-{{$education->education_id}}" aria-expanded="false" aria-controls="collapseThree3{{$education->education_id}}">
-                                       Education Information  {{$key+1}}
+                                       Education  {{$key+1}}
                                   </button>
                               </h5>
                           </div>

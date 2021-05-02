@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="row justify-content-center">
+<div class="row justify-content-center px-5">
     <div class="col-md">
         <h6>
             <a href="{{route('all-vacancies')}}" class="text-info">
@@ -12,7 +12,7 @@
     </div>
 </div>
 
-<div class="row shadow-lg d-flex flex-wramp" >
+<div class="row shadow-lg d-flex flex-wramp px-5" >
         @foreach ($vacancies as $vacancy)
         @php
             $explodedTitle = explode(' ', $vacancy->role_title) ;

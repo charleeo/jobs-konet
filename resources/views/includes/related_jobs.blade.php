@@ -1,5 +1,4 @@
-
-@if (!empty($similarJobs))
+@if (count($similarJobs) >0)
 
 <h3>Related Jobs</h3> <br>
 <div class="row  justify-content-center" >
