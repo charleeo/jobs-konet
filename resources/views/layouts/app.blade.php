@@ -9,7 +9,8 @@
 
     {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
 
-        <title>{{ config('app.name', 'FINGER TIP KONNECT') }}:{{$title}} </title>
+
+        <title>{{ config('app.name', 'JOBS KONET') }}:{{$title?$title:'Job Konet'}} </title>
     <!-- Fonts -->
     <link rel="icon" href="{{asset('images/icon/favicon.png')}}" type="image/gif">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
