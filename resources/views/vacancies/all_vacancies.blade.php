@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@if (!empty($vacancies))
 {{-- search form --}}
 <form action="{{route('search-vacancies')}}" method="POST">
     @csrf
@@ -54,5 +55,7 @@
         <hr>
     </div>
     @endforeach
+    @else <p>No Record Found</p>
 </div>
+@endif
 @endsection
