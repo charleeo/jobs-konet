@@ -19,7 +19,7 @@ class EmployerController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth','verified'])->except(['index', 'show', 'allVacancies', 'searchForVacancy','reachOut','getvacancyDetails']);
+        $this->middleware('auth')->except(['index', 'show', 'allVacancies', 'searchForVacancy','reachOut','getvacancyDetails']);
     }
 
 

@@ -23,7 +23,7 @@ class ApplicantController extends Controller
     // protect this route against unauthenticated users
     public function __construct()
     {
-        $this->middleware(['auth','verified'])->except(['show','index', 'searchForApplicant']);
+        $this->middleware('auth')->except(['show','index', 'searchForApplicant']);
     }
 
 

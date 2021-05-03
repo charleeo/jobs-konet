@@ -12,7 +12,7 @@ class ProfileImageController extends Controller
 {
     public function __construct()
     {
-       return $this->middleware(['auth','verified']);
+       return $this->middleware('auth');
     }
 
     // Display the form to the users
