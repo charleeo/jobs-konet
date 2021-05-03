@@ -10,8 +10,8 @@
                 <div class="card-body">
                         <h1>
                                 This is Your Dashboard
-                            </h1>
-                            <p>Features comming soon</p>
+                        </h1>
+                            <p>Please use the navigation menu to see yourself arround</p>
                 </div>
             </div>
         </div>
