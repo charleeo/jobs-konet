@@ -100,7 +100,7 @@
     <h3 class="text-center" id="heading"></h3>
    <section id="jobs" class="pl-2 pt-2">
        {{-- <div class="row"> --}}
-           @if(!empty($vacancies))
+           @if(count($vacancies) >0)
 
 
         <div class="card jobs-lists" id="jobs-lists">
@@ -127,6 +127,7 @@
 
 
         </div>
+        @else <p>No Vacancy has been posted yet</p>
         @endif
              <div id="loader-display"></div>
               <div  id="vacancy-details" class="vacancy">
@@ -136,7 +137,7 @@
 
    <section id="skills" class="pt-2 px-3 border-0">
     {{-- <div class="row"> --}}
-        @if(!empty($applicantsHomeView))
+        @if(count($applicantsHomeView) >0)
 
         <div class="card skills-lists" id="skills-lists">
             <div class="card-body mb-3 ml-2" >
@@ -176,7 +177,7 @@
                     </div>
                 </div>
             </div>
-            @else No Skill Set At The moment
+            @else No Skillais found At the moment
             @endif
         </div>
         {{-- <div id="skill-div"> --}}
