@@ -13,8 +13,8 @@
         <title>{{ config('app.name', 'JOBS KONET') }}:
           @php
              if(isset($title)){
-                 echo $title
-            }else {echo ""}
+                 echo $title;
+            }else {echo "";}
           @endphp
         </title>
     <!-- Fonts -->
