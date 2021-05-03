@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Image;
+// use Image;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -58,9 +58,9 @@ class ProfileImageController extends Controller
             }
 
             $fileName = time().'.'.$profilePhoto->getClientOriginalExtension();
-            Image::make($profilePhoto)->resize(200,200)->save(public_path('images/profile_pics/'.$fileName));
+            // Image::make($profilePhoto)->resize(200,200)->save(public_path('images/profile_pics/'.$fileName));
 
-        //    ($profilePhoto->move(realpath('images/profile_pics/'), $fileName));
+           ($profilePhoto->move(public_path('images/profile_pics/'), $fileName));
             $user->profile_photo = $fileName;
 
             $user->save();
