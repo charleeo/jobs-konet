@@ -30,7 +30,7 @@
       </li>
     </ul>
     <div id="control-side-menu">
-        <small>sidebar</small><i class="fas fa-arrow-left fa-2x text-white"></i>
+        <b class="text-light">sidebar</b><i class="fas fa-arrow-left fa-2x text-white"></i>
     </div>
   </div>
 
