@@ -3,6 +3,7 @@
 @section('content')
 
 <section class="justify-content-center pl-4">
+    @if(count($applicants) >0)
     <form action="{{route('search-applicants')}}" method="POST">
         @csrf
         <div class="row justify-content-center">
@@ -50,7 +51,7 @@
 
                 @php
                 $path = asset('images/profile_pics/default-image');
-                
+
                 if ($applicant->user->profile_photo !== 'noimage.png'){
                     $path = asset('images/profile_pics');
                 }
@@ -91,5 +92,9 @@
         @endforeach
         <hr/>
     </div>
+    @else <h2 class="text-center text-info">
+        No Record Posted Yet
+    </h2>
+    @endif
 </section>
     @endsection

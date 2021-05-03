@@ -330,7 +330,7 @@ $('#browse-talents').click(function(){
     $('.jobs-lists').css('display','none');
     $('#more-skills').css('opacity', 1)
     $('#more-jobs').css('opacity', 0)
-    if(document.querySelector('#skills').innerHTML===''){
+    if(document.querySelector('#skills').textContent===''){
         $('#heading').html('No Applicant Available At The Moment')
     }else{$('#heading').html('Skills Available')}
 });
@@ -340,7 +340,7 @@ $('#browse-jobs').click(function(){
     $('.skills-lists').css('display','none');
     $('#more-jobs').css('opacity', 1);
     $('#more-skills').css('opacity', 0);
-    if(document.querySelector('#jobs-lists').innerHTML===''){
+    if(document.querySelector('#jobs-lists').textContent===''){
         $('#heading').html('No Job Available At The Moment')
     }else{$('#heading').html('Jobs Available')}
 })
