@@ -10,7 +10,11 @@
     {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
 
 
-        <title>{{ config('app.name', 'JOBS KONET') }}:{{$title?$title:'Job Konet'}} </title>
+        <title>{{ config('app.name', 'JOBS KONET') }}:
+          @php
+              $title?$title:''
+          @endphp
+        </title>
     <!-- Fonts -->
     <link rel="icon" href="{{asset('images/icon/favicon.png')}}" type="image/gif">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
