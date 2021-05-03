@@ -97,17 +97,13 @@
             </div>
         </div>
     </section>
-    @if (count($vacancies) > 0 || count($applicantsHomeView) >0)
-
-        <h3 class="text-center" id="heading"></h3>
-    @else <h3>No Record Found At The Moment</h3>
-    @endif
+    <h3 class="text-center" id="heading"></h3>
    <section id="jobs" class="pl-2 pt-2">
        {{-- <div class="row"> --}}
+           <div class="card jobs-lists" id="jobs-lists">
            @if(!empty($vacancies))
 
 
-        <div class="card jobs-lists" id="jobs-lists">
             @foreach ($vacancies as $vacancy)
             @php
 
@@ -128,8 +124,6 @@
                 <button id="{{$vacancy->employer_id}}" class=" details btn-readmore " ><i class="fas fa-eye"></i> Deatils</button>
             </div>
             @endforeach
-
-
         </div>
         @endif
              <div id="loader-display"></div>
