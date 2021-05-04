@@ -9,7 +9,7 @@
           <h1>JOBS KONET</h1>
           <h3>Have Access To Jobs And Top Tallents</h3>
       </div>
-      <section id="about-u">
+      <section id="about-u" style="background: linear-gradient(to left, #202125, #271a24)">
             <div id="mission">
                 <div>OUR</div>
                 <div>MISSION</div>

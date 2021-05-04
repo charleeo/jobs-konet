@@ -2,6 +2,8 @@
     <ul>
       <li><a href="/">Home</a></li>
       <li><a href="{{route('about')}}">About</a></li>
+      <li><a href="/vacancy/all-vacancy">Vacancies</a></li>
+      <li><a href="/applicants/applicant-all">Employees</a></li>
       @if(Auth::user())
     <li><a href="/profile">Dashbaord</a></li>
       <li>
@@ -49,8 +51,11 @@
     <ul>
       <li><a href="/" class="">Home</a></li>
       <li><a href="{{route('about')}}">About</a></li>
+      <li><a href="/vacancy/all-vacancy">Vacancies</a></li>
+      <li><a href="/applicants/applicant-all">Employees</a></li>
       @if(Auth::user())
     <li><a href="/profile">Dashbaord</a></li>
+    <li><a href="/vacancy/all-vacancy">Vacancies</a></li>
       <li>
           <a href="{{ route('logout') }}"
           onclick="event.preventDefault();

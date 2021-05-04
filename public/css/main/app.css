@@ -432,7 +432,8 @@ body {
     top: 1rem;
   }
   #about-us {
-    min-height: 30rem;
+    min-height: 50vh;
+    background: #000000 !important;
   }
   #about-us .row {
     display: -webkit-box;
@@ -472,7 +473,7 @@ main {
 
 /*Banner*/
 #banner #header {
-  height: 90vh;
+  height: 50vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -520,12 +521,12 @@ main {
 }
 
 #mission {
-  border-right: 10px dashed #000000;
+  border-right: 10px dashed #ffffff;
   -webkit-box-flex: 2;
       -ms-flex: 2;
           flex: 2;
   text-align: center;
-  color: #500b2d;
+  color: #e4dde1;
   font-weight: 900;
   font-family: "Roboto Condensed",sans-serif;
   -webkit-box-align: center;
@@ -544,7 +545,7 @@ main {
 }
 
 .type-text-div .type-text {
-  color: #000000;
+  color: #502b2b;
 }
 
 /*Home Section*/
